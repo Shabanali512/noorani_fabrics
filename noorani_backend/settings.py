@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-xeqa4*#h^oywie
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*'] # Change this to your domain later (e.g. ['nooranifabrics.shop'])
+ALLOWED_HOSTS = ['shaban5.pythonanywhere.com', 'www.nooranifabrics.shop', 'nooranifabrics.shop', '127.0.0.1', 'localhost']
 
 
 # Application definition
