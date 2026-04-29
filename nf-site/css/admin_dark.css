@@ -57,7 +57,18 @@ input, select, textarea, .form-control, .select2-selection, .select2-dropdown, .
 input:focus, select:focus, textarea:focus, .form-control:focus {
     background-color: #333333 !important;
     color: #ffffff !important;
-    border-color: #007bff !important;
+    border-color: #6B1A2A !important;
+}
+
+/* Fix Status Dropdown Cutoff in List View */
+.field-status select {
+    width: 200px !important;
+    min-width: 200px !important;
+    padding: 4px 12px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+    background-color: #333333 !important;
 }
 
 /* Labels and text */
@@ -121,3 +132,52 @@ a:hover {
     font-size: 11px !important;
     letter-spacing: 0.5px !important;
 }
+
+/* Pro Dashboard Fixes */
+.card-title { font-weight: 700 !important; font-family: 'Playfair Display', serif !important; }
+.table td { vertical-align: middle !important; padding: 12px 8px !important; }
+.field-status_badge { text-align: center; }
+#content-main { padding-top: 10px; }
+
+/* --- ORDER MANAGEMENT REDESIGN --- */
+.field-order_info { white-space: nowrap; }
+.field-customer_info { min-width: 200px; }
+.field-items_ordered { max-width: 250px; }
+.field-address_preview { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+
+/* Status Column Professional Look */
+.field-status { 
+    text-align: center;
+}
+.field-status select {
+    width: 140px !important;
+    min-width: 140px !important;
+    background: #444 !important;
+    border: 1px solid #555 !important;
+    height: 32px !important;
+    font-size: 11px !important;
+    padding: 0 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    cursor: pointer !important;
+    color: #fff !important;
+}
+
+/* Hover effects for rows */
+.table-striped tbody tr:hover {
+    background-color: #333333 !important;
+}
+
+/* Total Amount Styling */
+.field-total_amount {
+    font-weight: 700 !important;
+    color: #ffc107 !important;
+    font-size: 14px !important;
+}
+
+/* WhatsApp Icon Pulse */
+.fa-whatsapp:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
