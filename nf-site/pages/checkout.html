@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Checkout — Noorani Fabrics</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+.checkout-grid{display:grid;grid-template-columns:1fr 380px;gap:32px;padding:40px 0 60px;align-items:start}
+.checkout-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:16px}
+.checkout-card h3{font-family:var(--font-h);font-size:18px;color:var(--maroon);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.pay-option{border:1.5px solid var(--border);border-radius:4px;padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;margin-bottom:8px;transition:border-color .3s}
+.pay-option input{accent-color:var(--maroon)}
+.pay-option.active{border-color:var(--maroon);background:rgba(107,26,42,.03)}
+@media(max-width:900px){.checkout-grid{grid-template-columns:1fr;gap:24px}.checkout-summary{position:static;order:1}.checkout-form{order:2}}
+@media(max-width:600px){.checkout-card{padding:16px}.checkout-card h3{font-size:16px;margin-bottom:16px}.pay-option{padding:10px 12px;font-size:14px}.checkout-btn{font-size:14px;padding:12px}.checkout-total{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="announce-bar">Get Free Shipping On Orders Above Rs. 4,999 !</div>
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap container">
+    <div class="nav-logo"><a href="../index.html"><img src="../images/logo.jpeg" alt="Noorani Fabrics"/></a></div>
+    <div class="nav-icons">
+      <a href="cart.html" class="nav-icon" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="icon-badge" id="cart-count">0</span></a>
+    </div>
+  </div>
+</nav>
+<div class="page-header"><h1>Checkout</h1><p class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="cart.html">Cart</a> &rsaquo; Checkout</p></div>
+<div class="container"><div class="checkout-grid" id="checkout-content"></div></div>
+
+<footer class="footer">
+  <div class="footer-bg">
+    <div class="footer-inner container">
+      <div class="footer-grid">
+        <div>
+          <ul class="footer-contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#00B4D8;flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lahore, Pakistan</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#00B4D8;flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>nooranifabrics444@gmail.com</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#00B4D8;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+92 308-4085453</li>
+          </ul>
+          <div style="display:flex;gap:12px;margin-top:15px">
+            <a href="https://www.facebook.com/share/1A9MuGn37R/" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='var(--maroon)'" onmouseout="this.style.color='var(--text-3)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/nooranifabrics444?igsh=Z2tuZ2w3aHBkcm15" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='var(--maroon)'" onmouseout="this.style.color='var(--text-3)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@nooranifabrics444?_r=1&_t=ZS-95rY27w47ur" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='var(--maroon)'" onmouseout="this.style.color='var(--text-3)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-3.99 3.5-7.52 7.41-7.26.12 0 .24.01.36.03V10.22c-1.44-.13-2.95.42-3.83 1.57-1.15 1.53-1.08 3.83.17 5.27.76.84 1.84 1.34 2.96 1.36 1.67.1 3.23-.9 3.89-2.43.32-.71.43-1.49.42-2.27V.02h.01z"/></svg>
+            </a>
+            <a href="https://wa.me/923084085453" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='var(--text-3)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="shop.html?cat=2piece">2Pc Collection</a></li>
+            <li><a href="shop.html?cat=3piece">3Pc Collection</a></li>
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?cat=embroidery">Embroidery</a></li>
+            <li><a href="shop.html?sale=1">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legals</h4>
+          <ul>
+            <li><a href="policies/privacy.html">Privacy Policy</a></li>
+            <li><a href="policies/refund.html">Refund Policy</a></li>
+            <li><a href="policies/shipping.html">Shipping Policy</a></li>
+            <li><a href="policies/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-newsletter">
+          <h4>Signup</h4>
+          <p>Subscribe to our newsletter and get 10% off your first purchase</p>
+          <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" placeholder="Your email address" required/>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Noorani Fabrics. All rights reserved. | Secure Checkout 🔒</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script src="../js/data_fallback.js" defer></script>
+<script src="../js/cart.js" defer></script>
+<script src="../js/main.js" defer></script>
+<script>
+let payMethod="Cash on Delivery";
+document.addEventListener("DOMContentLoaded", async ()=>{
+  await fetchData();
+  const items=Cart.get();
+  const container=document.getElementById("checkout-content");
+  if(!items.length){container.innerHTML=`<div style="grid-column:span 2;text-align:center;padding:60px 0"><h2 style="font-family:var(--font-h);color:var(--maroon);margin-bottom:16px">Cart khali hai!</h2><a href="shop.html" class="btn-maroon" style="display:inline-block;padding:12px 32px">Shop Now</a></div>`;return;}
+  const sub=Cart.total();const ship=sub>=4999?0:200;const total=sub+ship;
+
+  container.innerHTML=`
+  <div>
+    <div class="checkout-card">
+      <h3>Delivery Information</h3>
+      <div class="form-row-2"><div class="form-group"><label>Full Name *</label><input type="text" id="c-name" placeholder="Ayesha Khan"/></div><div class="form-group"><label>Phone *</label><input type="tel" id="c-phone" placeholder="+92 300 0000000"/></div></div>
+      <div class="form-group"><label>Email</label><input type="email" id="c-email" placeholder="email@example.com"/></div>
+      <div class="form-row-2">
+        <div class="form-group"><label>City *</label><select id="c-city"><option value="">Select City</option>${["Lahore","Karachi","Islamabad","Rawalpindi","Faisalabad","Multan","Peshawar","Quetta","Gujranwala","Sialkot"].map(c=>`<option>${c}</option>`).join("")}</select></div>
+        <div class="form-group"><label>Address *</label><input type="text" id="c-addr" placeholder="Street address"/></div>
+      </div>
+      <div class="form-group"><label>Note (Optional)</label><textarea id="c-note" placeholder="Any special instructions..."></textarea></div>
+    </div>
+  <div class="checkout-card">
+    <h3>Payment Method</h3>
+    <p style="font-size:12px;color:var(--text-3);margin-bottom:12px">Please select your preferred payment method:</p>
+    ${[
+      {id:"Cash on Delivery",label:"💵 Cash on Delivery",badge:"Recommended"},
+      {id:"JazzCash",label:"📱 JazzCash (Manual)"},
+      {id:"Easypaisa",label:"🟢 Easypaisa (Manual)"},
+      {id:"Bank Transfer",label:"🏦 Bank Transfer"}
+    ].map(pm=>`
+    <div class="pay-option ${pm.id==='Cash on Delivery'?'active':''}" onclick="selectPay('${pm.id}',this)">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <input type="radio" name="pay" value="${pm.id}" ${pm.id==='Cash on Delivery'?'checked':''}/> 
+        <span>${pm.label}</span>
+      </div>
+      ${pm.badge?`<span style="font-size:10px;background:var(--maroon);color:#fff;padding:2px 8px;border-radius:10px;font-weight:700">${pm.badge}</span>`:''}
+    </div>`).join("")}
+  </div>
+</div>
+<div>
+  <div class="cart-summary-box">
+    <h3>Order Summary</h3>
+    ${items.map(i=>{const p=window.PRODUCTS.find(x=>x.id===i.id);if(!p)return"";return`<div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)"><img src="${p.img}" style="width:52px;height:64px;object-fit:cover;border-radius:3px"/><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div style="font-size:11px;color:var(--text-3)">Size: ${i.size.toUpperCase()} × ${i.qty}</div></div><div style="font-weight:700;font-size:13px;color:var(--maroon);white-space:nowrap">${fmtPrice(p.price*i.qty)}</div></div>`;}).join("")}
+    <div class="summary-row" style="margin-top:8px"><span>Subtotal</span><span>${fmtPrice(sub)}</span></div>
+    <div class="summary-row"><span>Shipping</span><span>${ship===0?'<span style="color:green">FREE</span>':fmtPrice(ship)}</span></div>
+    <div class="summary-row"><span>Total</span><span>${fmtPrice(total)}</span></div>
+    <button class="btn-maroon" onclick="placeOrder()" style="margin-top:16px">Place Order — ${fmtPrice(total)}</button>
+    <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--text-3)">🔒 Secure payment • 7-day returns</div>
+  </div>
+</div>`;
+});
+
+function selectPay(id,el){
+  payMethod=id;
+  document.querySelectorAll(".pay-option").forEach(o=>{o.classList.remove("active");o.querySelector("input").checked=false;});
+  el.classList.add("active");
+  el.querySelector("input").checked=true;
+}
+
+async function placeOrder(){
+  const name=document.getElementById("c-name")?.value.trim();
+  const phone=document.getElementById("c-phone")?.value.trim();
+  const email=document.getElementById("c-email")?.value.trim();
+  const city=document.getElementById("c-city")?.value;
+  const addr=document.getElementById("c-addr")?.value.trim();
+  const note=document.getElementById("c-note")?.value.trim();
+  
+  if(!name||!phone||!city||!addr){showToast("Sab zaruri fields bharein (naam, phone, city, address)");return;}
+  
+  const items = Cart.get();
+  const sub = Cart.total();
+  const ship = sub >= 4999 ? 0 : 200;
+  const total = sub + ship;
+
+  try {
+    const response = await fetch(window.API_BASE + "orders/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name, phone, email, address: `${addr}, ${city}. Note: ${note}`,
+        total, items, payment_method: payMethod
+      })
+    });
+    const result = await response.json();
+    if(result.status === "success") {
+      const orderId = "NF-" + result.order_id;
+      Cart.clear();
+
+      // Generate WhatsApp Message
+      let waText = `*New Order: ${orderId}*%0A`;
+      waText += `*Name:* ${name}%0A`;
+      waText += `*Phone:* ${phone}%0A`;
+      waText += `*Address:* ${addr}, ${city}%0A`;
+      if(note) waText += `*Note:* ${note}%0A`;
+      waText += `%0A*Order Items:*%0A`;
+      items.forEach(i => {
+        const p = window.PRODUCTS.find(x => x.id === i.id);
+        const pName = p ? p.name : `Product ID ${i.id}`;
+        waText += `- ${pName} (${i.size.toUpperCase()}) x ${i.qty}%0A`;
+      });
+      waText += `%0A*Total Amount:* ${fmtPrice(total)}%0A`;
+      waText += `*Payment Method:* ${payMethod}%0A`;
+      
+      const waLink = `https://wa.me/923084085453?text=${waText}`;
+
+      document.getElementById("checkout-content").innerHTML=`
+        <div style="grid-column:span 2;text-align:center;padding:60px 0">
+          <div style="width:70px;height:70px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h2 style="font-family:var(--font-h);font-size:36px;color:var(--maroon);margin-bottom:12px">Order Placed Successfully!</h2>
+          <p style="color:var(--text-2);margin-bottom:6px">Order ID: <strong style="color:var(--maroon)">${orderId}</strong></p>
+          <p style="color:var(--text-3);margin-bottom:28px;font-size:13px">Hum 24 ghante mein aapko contact karenge. Shukriya!</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <a href="${waLink}" target="_blank" class="btn-maroon" style="display:inline-block;padding:12px 28px;background:#25D366;border-color:#25D366"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Confirm via WhatsApp</a>
+            <a href="../index.html" class="btn-maroon" style="display:inline-block;padding:12px 28px">Home</a>
+            <a href="shop.html" style="display:inline-block;padding:12px 28px;border:2px solid var(--maroon);color:var(--maroon);font-weight:700;font-size:13px;letter-spacing:1px">Shop More</a>
+          </div>
+        </div>`;
+        
+      // Also automatically attempt to open WhatsApp
+      setTimeout(() => { window.open(waLink, '_blank'); }, 1500);
+    } else {
+      showToast("Order place karne mein masla hua. Dobara koshish karein.");
+    }
+  } catch (err) {
+    console.error("Order error:", err);
+    showToast("Network error. Please try again.");
+  }
+}
+</script>
+</body>
+</html>

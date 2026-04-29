@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Noorani Fabrics — Premium Women's Clothing Pakistan</title>
+  <meta name="description"
+    content="Discover premium Pakistani women's clothing at Noorani Fabrics. Luxury lawn, embroidery, and 2pc/3pc collections.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/homepage.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'" />
+</head>
+
+<body>
+
+  <!-- PURCHASE NOTIFICATION -->
+  <div class="purchase-notif" id="purchase-notif" style="display:none">
+    <img class="notif-img" id="notif-img" src="" alt="" />
+    <div class="notif-text">
+      <strong id="notif-name"></strong>
+      <span id="notif-product"></span>
+      <div class="notif-verified">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="#27ae60">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" stroke="#fff" stroke-width="2" fill="none" />
+        </svg>
+        Verified · <span id="notif-time"></span>
+      </div>
+    </div>
+    <button class="notif-close" onclick="document.getElementById('purchase-notif').style.display='none'">✕</button>
+  </div>
+  <div class="get-5off">GET 5% OFF</div>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">Get Free Shipping On Orders Above Rs. 4,999 !</div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-wrap container">
+      <div class="nav-logo">
+        <a href="index.html"><img src="images/logo.jpeg" alt="Noorani Fabrics" /></a>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="pages/shop.html" class="new-link">New Arrivals<span class="new-badge">New</span></a>
+        <a href="pages/shop.html?cat=embroidery">Embroidery</a>
+        <a href="pages/shop.html?cat=2piece">2Pc Collection</a>
+        <a href="pages/shop.html?cat=3piece">3Pc Collection</a>
+        <a href="pages/shop.html?sale=1" class="sale-link">Sale</a>
+        <a href="pages/contact.html">Contact Us</a>
+      </div>
+      <div class="nav-icons">
+        <button class="nav-icon" onclick="toggleSearch()" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </button>
+
+        <a href="pages/wishlist.html" class="nav-icon" aria-label="Wishlist" style="position:relative">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="icon-badge" id="wish-count">0</span>
+        </a>
+        <a href="pages/cart.html" class="nav-icon" aria-label="Cart" style="position:relative">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="icon-badge" id="cart-count">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="search-overlay">
+    <button class="search-close" onclick="toggleSearch()">&#10005;</button>
+    <div
+      style="text-align:center;margin-bottom:24px;font-size:13px;color:var(--text-3);letter-spacing:1px;text-transform:uppercase">
+      Search Products</div>
+    <input type="text" placeholder="Type to search..." id="search-input" oninput="liveSearch(this.value)" />
+    <div class="search-results" id="search-results"></div>
+  </div>
+
+  <!-- QUICK VIEW MODAL -->
+  <div class="qv-overlay" id="qv-overlay" onclick="closeQuickView()">
+    <div class="qv-modal" onclick="event.stopPropagation()">
+      <button class="qv-close" onclick="closeQuickView()">&#10005;</button>
+      <div class="qv-body" id="qv-body"></div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <!-- Decorative outline boxes -->
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <!-- Dot grid -->
+    <div class="hero-dots" id="hero-dots"></div>
+
+    <div class="hero-left">
+      <h1 class="hero-title">ELEGANCE<br />REDEFINED</h1>
+      <p class="hero-subtitle">Premium Pakistani women's clothing — crafted with love, delivered with care.</p>
+      <a href="pages/shop.html" class="hero-shop-btn">
+        <span>Shop Now</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-img-wrap">
+        <div class="hero-img-card hero-img-1">
+          <img src="images/hero1.png" alt="Luxury Brown Suit" />
+        </div>
+        <div class="hero-img-card hero-img-2">
+          <img src="images/hero2.png" alt="Teal Green Collection" />
+        </div>
+        <div class="hero-img-card hero-img-3">
+          <img src="images/hero3.png" alt="Casual Mauve Set" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS CIRCLES -->
+  <section class="collections-sec">
+    <div class="container">
+      <div class="sec-title reveal">
+        <h2>Our Collections</h2>
+        <div class="ornament"><span>❧</span></div>
+      </div>
+      <div class="circles-grid" id="dynamic-collections-circles">
+        <!-- Dynamically populated from JS to ensure latest dresses/models from dashboard are shown -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP TRENDING -->
+  <section class="products-sec">
+    <div class="container">
+      <div class="sec-title reveal">
+        <h2>Top Trending Arrivals</h2>
+        <div class="ornament"><span>❧</span></div>
+        <p>Top trending products from Noorani Fabrics, loved by our customers.</p>
+      </div>
+      <div class="product-grid" id="trending-grid"></div>
+      <div style="text-align:center;margin-top:40px" class="reveal">
+        <a href="pages/shop.html" class="view-all-btn">View All &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS TAB SECTION -->
+  <section class="products-sec" style="background:var(--off-white);padding-top:60px;padding-bottom:60px">
+    <div class="container">
+      <div class="sec-title reveal">
+        <h2>Discover More</h2>
+        <div class="ornament"><span>❧</span></div>
+      </div>
+      <div class="filter-tabs-wrap reveal">
+        <div class="filter-tabs">
+          <button class="ftab active" data-cat="all">All Items</button>
+          <span class="tab-sep">/</span>
+          <button class="ftab" data-cat="2piece">2Pc Collection</button>
+          <span class="tab-sep">/</span>
+          <button class="ftab" data-cat="3piece">3Pc Collection</button>
+          <span class="tab-sep">/</span>
+          <button class="ftab" data-cat="embroidery">Embroidery</button>
+          <span class="tab-sep">/</span>
+          <button class="ftab" data-cat="casual">Casual Wear</button>
+          <span class="tab-sep">/</span>
+          <button class="ftab" data-cat="sale">Sale</button>
+        </div>
+      </div>
+      <div class="product-grid" id="collections-grid"></div>
+      <div style="text-align:center;margin-top:40px" class="reveal">
+        <a href="pages/shop.html" class="view-all-btn">View All Products &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WINTER WONDERS SALE SECTION -->
+  <section class="sale-section">
+    <div class="container">
+      <div class="sale-section-inner">
+        <div class="sale-header reveal">
+          <div class="sale-title">Winter Wonders Await ❄</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+            <span style="font-size:13px;font-weight:700;color:var(--text-2)">End in:</span>
+            <div class="countdown-pill">
+              <div class="cd-unit"><span class="cd-num" id="cd-h">00</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd-m">00</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd-s">00</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="sale-grid" id="sale-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOST FAMOUS ARRIVALS -->
+  <section class="famous-sec">
+    <div class="container">
+      <div class="sec-title reveal">
+        <h2>Most Loved Designs 🩷</h2>
+        <div class="ornament"><span>❧</span></div>
+      </div>
+      <div class="photo-strip reveal" id="loved-designs-strip">
+        <!-- Dynamically populated from JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES BAR -->
+  <section class="features-bar">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item reveal" style="--delay:0s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg></div>
+          <div class="feature-text">
+            <h4>Fast Shipping</h4>
+            <p>Fast shipping in all over Pakistan</p>
+          </div>
+        </div>
+        <div class="feature-item reveal" style="--delay:.1s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg></div>
+          <div class="feature-text">
+            <h4>Support 24/7</h4>
+            <p>Contact us 24 hours a day, 7 days a week</p>
+          </div>
+        </div>
+        <div class="feature-item reveal" style="--delay:.2s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="1 4 1 10 7 10" />
+              <path d="M3.51 15a9 9 0 1 0 .49-3.51" />
+            </svg></div>
+          <div class="feature-text">
+            <h4>7 Days Return</h4>
+            <p>Simply return it within 7 days for an exchange.</p>
+          </div>
+        </div>
+        <div class="feature-item reveal" style="--delay:.3s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg></div>
+          <div class="feature-text">
+            <h4>100% Payment Secure</h4>
+            <p>We ensure secure payment with PEV</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-sec">
+    <div class="container">
+      <div class="sec-title reveal">
+        <h2>Need Help? (Q&amp;A)</h2>
+        <div class="ornament"><span>❧</span></div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does shipping take? <div class="faq-toggle">+</div>
+          </button>
+          <div class="faq-a">Standard shipping: 5-7 business days. Expedited shipping: 2-3 business days.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How can I track my order? <div class="faq-toggle">+</div>
+          </button>
+          <div class="faq-a">You will receive a tracking number via email once your order is shipped.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How do I know what size to order? <div class="faq-toggle">+
+            </div></button>
+          <div class="faq-a">Check our size guide on each product page or contact customer service for help.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How can I contact customer service? <div class="faq-toggle">+
+            </div></button>
+          <div class="faq-a">Email us at nooranifabrics444@gmail.com or call us at +92 308-4085453. Mon–Sat, 10am–7pm.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMER REVIEWS -->
+  <section class="reviews-sec">
+    <div class="container">
+      <div class="sec-title reveal">
+        <h2>Customer Reviews</h2>
+        <div class="ornament"><span>❧</span></div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal" style="--delay:0s">
+          <div class="review-avatar" style="background:var(--maroon);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;border-radius:50%">A</div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The color and fabric quality exceeded my expectations—absolutely loved it!"</p>
+          <div class="review-name">Ayesha Khan</div>
+        </div>
+        <div class="review-card reveal" style="--delay:.1s">
+          <div class="review-avatar" style="background:var(--maroon);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;border-radius:50%">M</div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Super comfortable and stylish! The stitching is neat and the material feels premium."
+          </p>
+          <div class="review-name">Mehreen Fatima</div>
+        </div>
+        <div class="review-card reveal" style="--delay:.2s">
+          <div class="review-avatar" style="background:var(--maroon);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;border-radius:50%">H</div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Great experience! Fast delivery and the product looks even better in real life."</p>
+          <div class="review-name">Hania Noor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bg">
+      <div class="footer-inner container">
+        <div class="footer-grid">
+          <div>
+            <ul class="footer-contact">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="width:16px;height:16px;color:#00B4D8;flex-shrink:0">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>Lahore, Pakistan</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="width:16px;height:16px;color:#00B4D8;flex-shrink:0">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>nooranifabrics444@gmail.com</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="width:16px;height:16px;color:#00B4D8;flex-shrink:0">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>+92 308-4085453</li>
+            </ul>
+            <div style="display:flex;gap:12px;margin-top:20px">
+              <a href="https://www.facebook.com/share/1A9MuGn37R/" target="_blank" style="color:#fff;opacity:0.7;transition:opacity 0.3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/nooranifabrics444?igsh=Z2tuZ2w3aHBkcm15" target="_blank" style="color:#fff;opacity:0.7;transition:opacity 0.3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://www.tiktok.com/@nooranifabrics444?_r=1&_t=ZS-95rY27w47ur" target="_blank" style="color:#fff;opacity:0.7;transition:opacity 0.3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-3.99 3.5-7.52 7.41-7.26.12 0 .24.01.36.03V10.22c-1.44-.13-2.95.42-3.83 1.57-1.15 1.53-1.08 3.83.17 5.27.76.84 1.84 1.34 2.96 1.36 1.67.1 3.23-.9 3.89-2.43.32-.71.43-1.49.42-2.27V.02h.01z"/></svg>
+              </a>
+              <a href="https://wa.me/923084085453" target="_blank" style="color:#fff;opacity:0.7;transition:opacity 0.3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Menu</h4>
+            <ul>
+              <li><a href="pages/shop.html?cat=2piece">2Pc Collection</a></li>
+              <li><a href="pages/shop.html?cat=3piece">3Pc Collection</a></li>
+              <li><a href="pages/shop.html">All Products</a></li>
+              <li><a href="pages/shop.html?cat=embroidery">Embroidery</a></li>
+              <li><a href="pages/shop.html?cat=casual">Casual Wear</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legals</h4>
+            <ul>
+              <li><a href="pages/policies/privacy.html">Privacy Policy</a></li>
+              <li><a href="pages/policies/refund.html">Refund Policy</a></li>
+              <li><a href="pages/policies/shipping.html">Shipping Policy</a></li>
+              <li><a href="pages/policies/terms.html">Terms of Service</a></li>
+              <li><a href="http://127.0.0.1:8000/admin/" target="_blank" style="opacity:0.8;color:var(--text-3)">Admin
+                  Login</a></li>
+            </ul>
+          </div>
+          <div class="footer-col footer-newsletter">
+            <h4>Signup</h4>
+            <p>Subscribe to our newsletter and get 10% off your first purchase</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)"
+              style="display:flex;gap:10px;margin-top:15px;max-width:350px">
+              <input type="email" placeholder="Your email address" required
+                style="flex:1;padding:10px 15px;border-radius:25px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:#fff;outline:none;font-size:14px" />
+              <button type="submit"
+                style="padding:10px 25px;border-radius:25px;border:none;background:#800000;color:#fff;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-size:14px">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Noorani Fabrics. All Rights Reserved.</p>
+        <div style="display:flex;gap:15px;margin-top:10px;justify-content:center">
+          <a href="pages/policies/privacy.html" style="color:var(--text-3);font-size:12px;text-decoration:none">Privacy
+            Policy</a>
+          <a href="pages/policies/terms.html" style="color:var(--text-3);font-size:12px;text-decoration:none">Terms of
+            Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/923084085453" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+    </svg>
+  </a>
+
+  <script src="js/data_fallback.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script>
+    // Hero dots
+    const dotsEl = document.getElementById("hero-dots");
+    if (dotsEl) dotsEl.innerHTML = Array(32).fill('<span></span>').join('');
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await fetchData();
+
+      // Trending grid - 8 products
+        // Collections Circles (Dynamic Images)
+        const ccGrid = document.getElementById("dynamic-collections-circles");
+        if (ccGrid && window.PRODUCTS.length > 0) {
+          const newProd = window.PRODUCTS.find(p => p.badge === "new") || window.PRODUCTS[0];
+          const saleProd = window.PRODUCTS.find(p => p.badge === "sale") || window.PRODUCTS[1] || window.PRODUCTS[0];
+          const embProd = window.PRODUCTS.find(p => p.cat === "embroidery") || window.PRODUCTS[2] || window.PRODUCTS[0];
+          const threePcProd = window.PRODUCTS.find(p => p.cat === "3piece") || window.PRODUCTS[3] || window.PRODUCTS[0];
+          const allProd = window.PRODUCTS[4] || window.PRODUCTS[0];
+
+          ccGrid.innerHTML = `
+            <a href="pages/shop.html?new=1" class="circle-item reveal" style="--delay:0s">
+              <div class="circle-img"><img src="${newProd.img}" alt="New Arrivals" style="object-position: top;"/></div>
+              <h3>New Arrivals</h3>
+            </a>
+            <a href="pages/shop.html?sale=1" class="circle-item reveal" style="--delay:.08s">
+              <div class="circle-img"><img src="${saleProd.img}" alt="Sale" style="object-position: top;"/></div>
+              <h3>Sale</h3>
+            </a>
+            <a href="pages/shop.html?cat=embroidery" class="circle-item reveal" style="--delay:.16s">
+              <div class="circle-img"><img src="${embProd.img}" alt="Embroidery" style="object-position: top;"/></div>
+              <h3>Embroidery</h3>
+            </a>
+            <a href="pages/shop.html?cat=3piece" class="circle-item reveal" style="--delay:.24s">
+              <div class="circle-img"><img src="${threePcProd.img}" alt="3Pc Collection" style="object-position: top;"/></div>
+              <h3>3Pc Collection</h3>
+            </a>
+            <a href="pages/shop.html" class="circle-item reveal" style="--delay:.32s">
+              <div class="circle-img"><img src="${allProd.img}" alt="All Products" style="object-position: top;"/></div>
+              <h3>All Products</h3>
+            </a>
+          `;
+          reobserve(ccGrid.parentElement);
+        }
+
+        // Trending grid - 8 products
+        const tg = document.getElementById("trending-grid");
+        if (tg) { 
+          let trending = window.PRODUCTS.filter(p => p.is_trending);
+          if (trending.length === 0) trending = window.PRODUCTS.slice(0, 8); // Fallback
+          tg.innerHTML = trending.slice(0, 8).map(p => renderProductCard(p, "pages/")).join(""); 
+          reobserve(tg); 
+        }
+
+      // Collections tab grid
+      const cg = document.getElementById("collections-grid");
+      function renderCollGrid(cat) {
+        let list = [];
+        if (cat === "all") list = window.PRODUCTS;
+        else if (cat === "sale") list = window.PRODUCTS.filter(p => p.badge === "sale");
+        else list = window.PRODUCTS.filter(p => p.cat === cat);
+
+        if (cg) { cg.innerHTML = list.slice(0, 8).map(p => renderProductCard(p, "pages/")).join(""); reobserve(cg); }
+      }
+      renderCollGrid("all");
+      document.querySelectorAll(".ftab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".ftab").forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          renderCollGrid(tab.dataset.cat);
+        });
+      });
+
+      // Sale grid
+      const sg = document.getElementById("sale-grid");
+      if (sg) { sg.innerHTML = window.PRODUCTS.filter(p => p.badge === "sale").slice(0, 4).map(p => renderSaleCard(p, "pages/")).join(""); reobserve(sg); }
+
+      // Loved Designs Strip
+      const lds = document.getElementById("loved-designs-strip");
+      if (lds) {
+        let featured = window.PRODUCTS.filter(p => p.is_featured);
+        if (featured.length === 0) featured = window.PRODUCTS.slice(0, 6); // Fallback to first 6 if none featured
+        lds.innerHTML = featured.slice(0, 6).map(p => `<div class="photo-strip-item" style="cursor:pointer" onclick="location.href='pages/product.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" /></div>`).join("");
+      }
+
+      initNavbar();
+      initPurchaseNotif();
+      setTimeout(initReveal, 100);
+    });
+
+    function reobserve(container) {
+      setTimeout(() => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+        }, { threshold: 0.05 });
+        container.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+      }, 60);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Product — Noorani Fabrics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="announce-bar">Get Free Shipping On Orders Above Rs. 4,999 !</div>
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap container">
+    <div class="nav-logo"><a href="../index.html"><img src="../images/logo.jpeg" alt="Noorani Fabrics"/></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="shop.html" class="new-link">New Arrivals<span class="new-badge">New</span></a>
+      <a href="shop.html?cat=embroidery">Embroidery</a>
+      <a href="shop.html?cat=2piece">2Pc Collection</a>
+      <a href="shop.html?cat=3piece">3Pc Collection</a>
+      <a href="shop.html?sale=1" class="sale-link">Sale</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="nav-icons">
+      <button class="nav-icon" onclick="toggleSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <a href="wishlist.html" class="nav-icon" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="icon-badge" id="wish-count">0</span></a>
+      <a href="cart.html" class="nav-icon" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="icon-badge" id="cart-count">0</span></a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="search-overlay" id="search-overlay">
+  <button class="search-close" onclick="toggleSearch()">&#10005;</button>
+  <input type="text" placeholder="Search products..." id="search-input" oninput="liveSearch(this.value)"/>
+  <div class="search-results" id="search-results"></div>
+</div>
+
+<!-- QUICK VIEW MODAL -->
+<div class="qv-overlay" id="qv-overlay" onclick="closeQuickView()">
+  <div class="qv-modal" onclick="event.stopPropagation()">
+    <button class="qv-close" onclick="closeQuickView()">&#10005;</button>
+    <div class="qv-body" id="qv-body"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="pd-content" style="padding:12px 0 8px"><p style="color:var(--text-3);font-size:12px"><a href="../index.html">Home</a> &rsaquo; <a href="shop.html">Shop</a> &rsaquo; <span id="pd-bc">Product</span></p></div>
+  <div id="pd-main"></div>
+</div>
+
+<!-- RELATED -->
+<section style="padding:48px 0 60px;background:var(--off-white)">
+  <div class="container">
+    <div class="sec-title"><h2>You may also like</h2><div class="ornament"><span>❧</span></div></div>
+    <div class="product-grid" id="related-grid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bg">
+    <div class="footer-inner container">
+      <div class="footer-grid">
+        <div><ul class="footer-contact"><li>Lahore, Pakistan</li><li>nooranifabrics444@gmail.com</li><li>+92 308-4085453</li></ul>
+        <div style="display:flex;gap:12px;margin-top:15px">
+          <a href="https://www.facebook.com/share/1A9MuGn37R/" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='var(--maroon)'" onmouseout="this.style.color='var(--text-3)'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/nooranifabrics444?igsh=Z2tuZ2w3aHBkcm15" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='var(--maroon)'" onmouseout="this.style.color='var(--text-3)'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@nooranifabrics444?_r=1&_t=ZS-95rY27w47ur" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='var(--maroon)'" onmouseout="this.style.color='var(--text-3)'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-3.99 3.5-7.52 7.41-7.26.12 0 .24.01.36.03V10.22c-1.44-.13-2.95.42-3.83 1.57-1.15 1.53-1.08 3.83.17 5.27.76.84 1.84 1.34 2.96 1.36 1.67.1 3.23-.9 3.89-2.43.32-.71.43-1.49.42-2.27V.02h.01z"/></svg>
+          </a>
+          <a href="https://wa.me/923084085453" target="_blank" style="color:var(--text-3);transition:color 0.3s" onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='var(--text-3)'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+        </div></div>
+        <div class="footer-col"><h4>Menu</h4><ul><li><a href="shop.html?cat=2piece">2Pc Collection</a></li><li><a href="shop.html?cat=3piece">3Pc Collection</a></li><li><a href="shop.html">All Products</a></li><li><a href="shop.html?cat=embroidery">Embroidery</a></li><li><a href="shop.html?sale=1">Sale</a></li></ul></div>
+        <div class="footer-col"><h4>Legals</h4><ul><li><a href="policies/privacy.html">Privacy Policy</a></li><li><a href="policies/refund.html">Refund Policy</a></li><li><a href="policies/shipping.html">Shipping Policy</a></li><li><a href="policies/terms.html">Terms of Service</a></li></ul></div>
+        <div class="footer-col footer-newsletter"><h4>Signup</h4><p>Get 10% off your first order</p><form class="newsletter-form" onsubmit="subscribeNewsletter(event)"><input type="email" placeholder="Your email" required/><button>Subscribe</button></form></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Noorani Fabrics.</p></div>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+<a href="https://wa.me/923084085453" target="_blank" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#25D366;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2)"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+
+<script src="../js/data_fallback.js" defer></script>
+<script src="../js/cart.js" defer></script>
+<script src="../js/main.js" defer></script>
+<script>
+let selSize="s", qty=1, pdId=null;
+document.addEventListener("DOMContentLoaded", async ()=>{
+  await fetchData();
+  const id=parseInt(new URLSearchParams(location.search).get("id"));
+  const p=window.PRODUCTS.find(x=>x.id===id)||window.PRODUCTS[0];
+  if(!p) return;
+  pdId=p.id;
+  document.title=p.name+" — Noorani Fabrics";
+  const bc=document.getElementById("pd-bc"); if(bc) bc.textContent=p.name;
+  const disc=discPct(p.price,p.oldPrice);
+  const viewers=Math.floor(Math.random()*50)+10;
+  const soldHrs=Math.floor(Math.random()*20)+5;
+  const soldNum=Math.floor(Math.random()*25)+5;
+
+  const thumbImgs = [p.img];
+  if(p.img2) thumbImgs.push(p.img2);
+  if(p.img3) thumbImgs.push(p.img3);
+  if(p.img4) thumbImgs.push(p.img4);
+  if(p.img5) thumbImgs.push(p.img5);
+  
+  // Only add placeholders if we have very few images
+  if(thumbImgs.length < 2) {
+    thumbImgs.push("https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=500&q=85");
+  }
+
+  const pdMain=document.getElementById("pd-main");
+  if(pdMain) pdMain.innerHTML=`
+    <div class="product-detail-layout">
+      <div class="pd-gallery">
+        <div class="pd-thumbs">
+          ${thumbImgs.map((img,i)=>`<img class="pd-thumb ${i===0?'active':''}" src="${img}" alt="thumb ${i}" onclick="switchImg('${img}',this)"/>`).join("")}
+        </div>
+        <div class="pd-main-wrap" style="flex:1">
+          <img class="pd-main-img" id="pd-main-img" src="${p.img}" alt="${p.name}"/>
+          ${disc>0?`<span class="pd-discount-badge">-${disc}%</span>`:""}
+          <button class="pd-zoom-btn" onclick="zoomImg()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="pd-urgency">⚡ <strong>HURRY! ONLY ${p.stock} LEFT IN STOCK.</strong></div>
+        <div style="background:var(--maroon);height:5px;width:${Math.round(p.sold/(p.sold+p.stock)*100)}%;border-radius:3px;margin-bottom:12px"></div>
+        <div class="pd-viewers"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> ${viewers} People are viewing this right now</div>
+        <h1 class="pd-name">${p.name}</h1>
+        <div class="pd-prices">
+          <span class="pd-price-orig">${fmtPrice(p.oldPrice)}</span>
+          <span class="pd-price-sale">${fmtPrice(p.price)}</span>
+          ${disc>0?`<span class="pd-save-badge">SAVE-${disc}%</span>`:""}
+        </div>
+        <p class="pd-shipping"><a href="policies/shipping.html">Shipping</a> calculated at checkout.</p>
+        <p class="pd-offer">Order Any <strong style="color:var(--maroon)">2 Dresses</strong> And Enjoy <strong style="color:var(--maroon)">Free Home Delivery</strong></p>
+        <p class="pd-offer" style="margin-bottom:16px">Get <strong style="color:var(--maroon)">Free Shipping</strong> On Orders Above <strong style="color:var(--maroon)">Rs. 4,999</strong></p>
+        <div class="size-label">SIZE: <span id="sel-size-label" style="color:var(--maroon)">${selSize.toUpperCase()}</span> <a href="#">Size Guide</a></div>
+        <div class="size-btns">
+          ${p.sizes.map(s=>`<button class="size-btn ${s==='s'?'active':''}" onclick="selectSize(this,'${s}')">${s}</button>`).join("")}
+        </div>
+        <div class="qty-add-row">
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-val" id="qty-val">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+          <button class="btn-add-cart" onclick="addToCartPD()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            ADD TO CART
+          </button>
+          <div class="btn-wishlist-share">
+            <button class="btn-icon-circle" id="wish-btn" onclick="togglePDWish()" title="Wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="${Wishlist.has(p.id)?'var(--maroon)':'none'}" stroke="${Wishlist.has(p.id)?'var(--maroon)':'currentColor'}" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="btn-icon-circle" title="Compare">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 21H9v-5M21 3l-7 7M3 21l7-7"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="btn-buy-now" onclick="buyNow()">BUY IT NOW</button>
+        <button class="btn-pay-advance">🔒 Pay in Advance &amp; Continue to Checkout</button>
+        <button class="btn-happy-customers">👥 1,000,000+ HAPPY CUSTOMERS</button>
+        
+        <div class="pd-tabs" style="margin-top:24px">
+          <div class="pd-tab-header">
+            <button class="pd-tab-btn active" onclick="switchTab(this, 'desc')">Description</button>
+            <button class="pd-tab-btn" onclick="switchTab(this, 'info')">Additional Information</button>
+          </div>
+          <div id="desc" class="pd-tab-content active">
+            <div style="font-size:13px; line-height:1.7; color:var(--text-2)">
+              <strong>ARTICLE NAME:</strong> ${p.name.toUpperCase()} <br>
+              <strong>AVAILABLE SIZES:</strong> ${p.sizes.join(', ').toUpperCase()} <br>
+              <strong>FABRIC:</strong> LUXURY PREMIUM PURE EID SEASON ARABIC LAWN FABRIC <br>
+              <strong>DETAILS:</strong> FULLY EMBROIDERED SHIRT + EMBROIDERED TROUSER <br><br>
+              <span style="font-style:italic; font-size:12px; color:var(--text-3)">Note: Actual product color may slightly vary due to lighting and screen resolution.</span>
+            </div>
+          </div>
+          <div id="info" class="pd-tab-content">
+            <div style="font-size:13px; color:var(--text-2)">
+              <strong>Sizes:</strong> ${p.sizes.join(', ')}<br>
+              <strong>Category:</strong> ${getCat(p.cat)}<br>
+              <strong>Shipping:</strong> Standard delivery within 3-5 working days.
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;background:#f8f8f8;border-radius:6px;padding:14px 16px;font-size:13px;color:var(--text-2);font-style:italic;border-left:3px solid var(--maroon)">"Beautiful fabric and premium stitching." <br/><strong style="color:var(--maroon);font-style:normal">★★★★★ — Ayesha R., Karachi</strong></div>
+        <div class="pd-meta" style="margin-top:16px">
+          <div><strong>Availability:</strong> <span style="color:green">In Stock</span></div>
+          <div><strong>Collections:</strong> <a href="shop.html?cat=${p.cat}">${getCat(p.cat)}</a>, <a href="shop.html">All Products</a></div>
+        </div>
+        <div class="pd-sold-text" style="margin-top:10px">🔥 ${soldNum} sold in last ${soldHrs} hours</div>
+        ${renderSizeChart()}
+      </div>
+    </div>`;
+
+  initMouseZoom(".pd-main-wrap", "#pd-main-img");
+
+  // Related products
+  const related=window.PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
+  const relatedGrid=document.getElementById("related-grid");
+  if(relatedGrid) relatedGrid.innerHTML=related.map(rp=>renderProductCard(rp,"")).join("");
+  setTimeout(()=>document.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible")),80);
+});
+
+function renderSizeChart(){
+  return `<div class="size-chart" style="margin-top:20px">
+    <div class="size-chart-title"><span>SIZE CHART</span><small style="color:var(--text-3);font-weight:400">→ All sizes in Inches</small></div>
+    <div><h4 style="padding:10px 16px;font-size:13px;font-weight:700">Size Chart</h4>
+    <table><thead><tr><th>SIZE</th><th>SHOULDER</th><th>ARM HOLE</th><th>CHEST</th><th>WAIST</th><th>HIP</th><th>BOTTOM</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>14</td><td>8</td><td>19</td><td>18</td><td>20</td><td>22</td></tr>
+      <tr><td>M</td><td>15</td><td>9</td><td>21</td><td>20</td><td>22</td><td>23</td></tr>
+      <tr><td>L</td><td>16</td><td>10</td><td>22.5</td><td>21.5</td><td>23.5</td><td>24</td></tr>
+      <tr><td>XL</td><td>17</td><td>10.50</td><td>24</td><td>23</td><td>24.5</td><td>25.5</td></tr>
+    </tbody></table></div>
+    <div style="padding:0 0 12px"><h4 style="padding:10px 16px;font-size:13px;font-weight:700">Trouser</h4>
+    <table><thead><tr><th>SIZE</th><th>LENGTH</th><th>WAIST</th><th>THIGH</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>38</td><td>12.5</td><td>14</td></tr>
+      <tr><td>M</td><td>38</td><td>13</td><td>15</td></tr>
+      <tr><td>L</td><td>39</td><td>14</td><td>16</td></tr>
+      <tr><td>XL</td><td>39</td><td>15</td><td>17</td></tr>
+    </tbody></table></div>
+  </div>`;
+}
+
+function switchImg(src,thumb){
+  document.getElementById("pd-main-img").src=src;
+  document.querySelectorAll(".pd-thumb").forEach(t=>t.classList.remove("active"));
+  thumb.classList.add("active");
+}
+function selectSize(btn,sz){
+  document.querySelectorAll(".size-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");selSize=sz;
+  document.getElementById("sel-size-label").textContent=sz.toUpperCase();
+}
+function changeQty(d){qty=Math.max(1,qty+d);document.getElementById("qty-val").textContent=qty;}
+function addToCartPD(){
+  const items=Cart.get();const idx=items.findIndex(i=>i.id===pdId&&i.size===selSize);
+  if(idx>=0)items[idx].qty+=qty;else items.push({id:pdId,size:selSize,qty});
+  Cart.save(items);
+  const p=window.PRODUCTS.find(x=>x.id===pdId);
+  showToast('"'+p.name+'" ('+qty+'x, size '+selSize.toUpperCase()+') cart mein add ho gaya ✓');
+  animBadge("cart-count");
+}
+function buyNow(){addToCartPD();location.href="checkout.html";}
+function togglePDWish(){
+  const added=Wishlist.toggle(pdId);
+  const btn=document.getElementById("wish-btn");
+  const svg=btn?.querySelector("svg");
+  if(svg){svg.setAttribute("fill",added?"var(--maroon)":"none");svg.setAttribute("stroke",added?"var(--maroon)":"currentColor");}
+}
+function zoomImg(){
+  const src=document.getElementById("pd-main-img")?.src;
+  if(!src)return;
+  const ov=document.createElement("div");
+  ov.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out";
+  ov.innerHTML=`<img src="${src}" style="max-width:90vw;max-height:90vh;object-fit:contain"/>`;
+  ov.onclick=()=>ov.remove();document.body.appendChild(ov);
+}
+function switchTab(btn, tabId){
+  document.querySelectorAll(".pd-tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".pd-tab-content").forEach(c=>c.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById(tabId).classList.add("active");
+}
+</script>
+</body>
+</html>

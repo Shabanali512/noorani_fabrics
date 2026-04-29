@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Policy — Noorani Fabrics</title>
+<link rel="stylesheet" href="../../css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+.policy-wrap{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+.policy-wrap h1{font-family:var(--font-h);font-size:36px;color:var(--maroon);margin-bottom:8px}
+.policy-updated{font-size:13px;color:var(--text-3);margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:16px}
+.policy-wrap h2{font-family:var(--font-h);font-size:20px;color:var(--maroon);margin:28px 0 10px}
+.policy-wrap p{font-size:14px;color:var(--text-2);line-height:1.9;margin-bottom:12px}
+.policy-wrap ul{padding-left:20px;margin-bottom:12px}
+.policy-wrap ul li{font-size:14px;color:var(--text-2);line-height:1.9;margin-bottom:6px}
+.policy-wrap strong{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="announce-bar">Get Free Shipping On Orders Above Rs. 4,999 !</div>
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap container">
+    <div class="nav-logo"><a href="../../index.html"><img src="../../images/logo.jpeg" alt="Noorani Fabrics"/></a></div>
+    <div class="nav-links">
+      <a href="../shop.html">New Arrivals</a>
+      <a href="../shop.html?cat=embroidery">Embroidery</a>
+      <a href="../shop.html?sale=1" class="sale-link">Sale</a>
+      <a href="../shop.html?cat=3piece">3Pc Collection</a>
+      <a href="../contact.html">Contact Us</a>
+    </div>
+    <div class="nav-icons">
+      <a href="../cart.html" class="nav-icon" style="position:relative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="icon-badge" id="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<div id="policy-content" class="policy-wrap"></div>
+<footer class="footer"><div class="footer-bg"><div class="footer-inner container">
+  <div class="footer-grid">
+    <div><ul class="footer-contact"><li>Lahore, Pakistan</li><li>nooranifabrics444@gmail.com</li><li>+92 308-4085453</li></ul></div>
+    <div class="footer-col"><h4>Menu</h4><ul><li><a href="../shop.html?cat=3piece">3Pc Collection</a></li><li><a href="../shop.html">All Products</a></li><li><a href="../shop.html?cat=embroidery">Embroidery</a></li><li><a href="../shop.html?sale=1">Sale</a></li></ul></div>
+    <div class="footer-col"><h4>Legals</h4><ul>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+      <li><a href="shipping.html">Shipping Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Signup</h4><p>Get 10% off your first order</p><form class="newsletter-form" onsubmit="event.preventDefault()"><input type="email" placeholder="Your email" required/><button>Subscribe</button></form></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Noorani Fabrics.</p></div>
+</div></div></footer>
+<div class="toast" id="toast"></div>
+<script src="../../js/data.js"></script>
+<script src="../../js/cart.js"></script>
+<script src="../../js/main.js"></script>
+<script>
+const POLICIES = {
+  privacy: {
+    title: "Privacy Policy",
+    content: `<p class="policy-updated">Last updated: April 22, 2026</p>
+    <p>At Noorani Fabrics, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website or make a purchase.</p>
+    <h2>1. Information We Collect</h2>
+    <p>We collect information you provide directly to us, including:</p>
+    <ul><li>Name, email address, phone number</li><li>Shipping and billing address</li><li>Payment information (processed securely)</li><li>Order history and preferences</li></ul>
+    <h2>2. How We Use Your Information</h2>
+    <ul><li>To process and fulfill your orders</li><li>To send order confirmations and shipping updates</li><li>To respond to your inquiries and provide customer support</li><li>To send promotional emails (you may unsubscribe at any time)</li><li>To improve our website and services</li></ul>
+    <h2>3. Data Security</h2>
+    <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. All payment transactions are encrypted using SSL technology.</p>
+    <h2>4. Cookies</h2>
+    <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. You can control cookie settings through your browser preferences.</p>
+    <h2>5. Third-Party Services</h2>
+    <p>We may share your information with trusted third-party services such as payment processors (JazzCash, Easypaisa) and delivery partners to fulfill your orders.</p>
+    <h2>6. Your Rights</h2>
+    <p>You have the right to access, correct, or delete your personal information. Contact us at nooranifabrics444@gmail.com to exercise these rights.</p>
+    <h2>7. Contact Us</h2>
+    <p>For privacy-related questions, contact us at:<br/><strong>Email:</strong> nooranifabrics444@gmail.com<br/><strong>Phone:</strong> +92 308-4085453</p>`
+  },
+  refund: {
+    title: "Refund Policy",
+    content: `<p class="policy-updated">Last updated: April 22, 2026</p>
+    <p>At Noorani Fabrics, we want you to be completely satisfied with your purchase. If you are not satisfied, we offer a 7-day exchange policy.</p>
+    <h2>1. Exchange Policy</h2>
+    <p>We offer exchanges within <strong>7 days</strong> of delivery. To be eligible for an exchange, your item must be:</p>
+    <ul><li>Unused and in the same condition that you received it</li><li>In the original packaging with all tags attached</li><li>Accompanied by the receipt or proof of purchase</li></ul>
+    <h2>2. Non-Exchangeable Items</h2>
+    <ul><li>Items that have been worn, washed, or altered</li><li>Items without original tags or packaging</li><li>Sale items marked as final sale</li><li>Custom or personalized orders</li></ul>
+    <h2>3. Exchange Process</h2>
+    <p>To initiate an exchange:</p>
+    <ul><li>Contact us within 7 days of receiving your order</li><li>Email us at nooranifabrics444@gmail.com with your order number and reason for exchange</li><li>We will arrange a pickup from your address</li><li>Once we receive and inspect the item, we will process your exchange</li></ul>
+    <h2>4. Refunds</h2>
+    <p>We primarily offer exchanges. In exceptional cases where an exchange is not possible, a store credit or refund may be issued after review. Refunds are processed within 5-7 business days.</p>
+    <h2>5. Damaged or Defective Items</h2>
+    <p>If you receive a damaged or defective item, please contact us immediately at nooranifabrics444@gmail.com with photos. We will resolve the issue at no additional cost to you.</p>
+    <h2>6. Contact Us</h2>
+    <p><strong>Email:</strong> nooranifabrics444@gmail.com<br/><strong>Phone:</strong> +92 308-4085453<br/><strong>Hours:</strong> Monday–Saturday, 10am–7pm</p>`
+  },
+  shipping: {
+    title: "Shipping Policy",
+    content: `<p class="policy-updated">Last updated: April 22, 2026</p>
+    <p>We aim to deliver your orders as quickly and safely as possible. Please read our shipping policy carefully.</p>
+    <h2>1. Shipping Coverage</h2>
+    <p>We ship to all major cities and towns across Pakistan, including Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, Quetta, Gujranwala, and Sialkot.</p>
+    <h2>2. Shipping Rates</h2>
+    <ul><li><strong>Standard Shipping:</strong> Rs. 200 (flat rate)</li><li><strong>Free Shipping:</strong> On all orders above Rs. 4,999</li><li><strong>Express Shipping:</strong> Rs. 400 (2-3 business days)</li></ul>
+    <h2>3. Delivery Timeframes</h2>
+    <ul><li><strong>Major Cities:</strong> 3-5 business days</li><li><strong>Other Areas:</strong> 5-7 business days</li><li><strong>Express Delivery:</strong> 2-3 business days</li></ul>
+    <h2>4. Order Processing</h2>
+    <p>Orders are processed within <strong>1-2 business days</strong> after payment confirmation. You will receive a confirmation email with tracking details once your order is shipped.</p>
+    <h2>5. Tracking Your Order</h2>
+    <p>Once your order is dispatched, you will receive a tracking number via SMS and email. You can use this to track your parcel with our courier partner.</p>
+    <h2>6. Delivery Attempts</h2>
+    <p>Our courier will make 2 delivery attempts. If unsuccessful, the parcel will be held at the courier facility for 3 days. After that, it will be returned to us.</p>
+    <h2>7. Cash on Delivery</h2>
+    <p>COD is available across Pakistan. Please ensure someone is available at the delivery address to receive and pay for the order.</p>
+    <h2>8. Contact Us</h2>
+    <p><strong>Email:</strong> nooranifabrics444@gmail.com<br/><strong>Phone:</strong> +92 308-4085453</p>`
+  },
+  terms: {
+    title: "Terms of Service",
+    content: `<p class="policy-updated">Last updated: April 22, 2026</p>
+    <p>Please read these Terms of Service carefully before using the Noorani Fabrics website. By accessing or using our service, you agree to be bound by these terms.</p>
+    <h2>1. Use of Website</h2>
+    <p>By using this website, you confirm that you are at least 18 years of age. You agree to use this website only for lawful purposes and in a manner that does not infringe the rights of others.</p>
+    <h2>2. Products and Pricing</h2>
+    <ul><li>All prices are listed in Pakistani Rupees (PKR)</li><li>We reserve the right to modify prices without prior notice</li><li>Product images are for illustration purposes; actual colors may vary slightly due to screen settings</li><li>We reserve the right to discontinue any product at any time</li></ul>
+    <h2>3. Orders and Payments</h2>
+    <ul><li>Orders are confirmed upon successful payment or COD acceptance</li><li>We accept JazzCash, Easypaisa, Bank Transfer, and Cash on Delivery</li><li>We reserve the right to cancel orders due to pricing errors or stock unavailability</li></ul>
+    <h2>4. Intellectual Property</h2>
+    <p>All content on this website, including images, text, logos, and designs, is the property of Noorani Fabrics and is protected by copyright laws. You may not reproduce, distribute, or create derivative works without our written permission.</p>
+    <h2>5. Limitation of Liability</h2>
+    <p>Noorani Fabrics shall not be liable for any indirect, incidental, or consequential damages arising from the use of our products or website.</p>
+    <h2>6. Governing Law</h2>
+    <p>These terms are governed by the laws of Pakistan. Any disputes shall be resolved in the courts of Lahore, Pakistan.</p>
+    <h2>7. Changes to Terms</h2>
+    <p>We reserve the right to update these terms at any time. Continued use of our website after changes constitutes acceptance of the new terms.</p>
+    <h2>8. Contact Us</h2>
+    <p><strong>Email:</strong> nooranifabrics444@gmail.com<br/><strong>Phone:</strong> +92 308-4085453<br/><strong>Address:</strong> Lahore, Pakistan</p>`
+  }
+};
+const slug=location.pathname.split("/").pop().replace(".html","");
+const pol=POLICIES[slug]||POLICIES.privacy;
+document.title=pol.title+" — Noorani Fabrics";
+document.getElementById("policy-content").innerHTML="<h1>"+pol.title+"</h1>"+pol.content;
+document.addEventListener("DOMContentLoaded",()=>{Cart.badge();Wishlist.badge();initNavbar();});
+</script>
+</body>
+</html>

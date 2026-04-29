@@ -1,0 +1,123 @@
+/* ULTIMATE DARK MODE OVERRIDE */
+
+html, body, .wrapper, .content-wrapper, .main-header, .main-sidebar, .main-footer, .content-header, .login-page {
+    background-color: #222222 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Navbar */
+.navbar, .navbar-light, .navbar-white {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333333 !important;
+}
+.nav-link, .brand-text {
+    color: #e0e0e0 !important;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #1a1a1a !important;
+}
+.nav-sidebar .nav-item > .nav-link {
+    color: #e0e0e0 !important;
+}
+.nav-sidebar .nav-item > .nav-link.active {
+    background-color: #007bff !important;
+    color: #ffffff !important;
+}
+
+/* Cards & Containers */
+.card, .info-box, .modal-content {
+    background-color: #2b2b2b !important;
+    border: 1px solid #333333 !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+    color: #e0e0e0 !important;
+}
+.card-header, .modal-header, .modal-footer, .card-footer {
+    background-color: #1a1a1a !important;
+    border-color: #333333 !important;
+}
+
+/* Tables */
+.table, .table-striped tbody tr, .table-hover tbody tr:hover, .list-group-item {
+    background-color: #2b2b2b !important;
+    color: #e0e0e0 !important;
+    border-color: #333333 !important;
+}
+.table thead th, .table td, .table th {
+    border-color: #333333 !important;
+}
+
+/* Form Elements */
+input, select, textarea, .form-control, .select2-selection, .select2-dropdown, .select2-results__options {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+    border: 1px solid #444444 !important;
+}
+input:focus, select:focus, textarea:focus, .form-control:focus {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+    border-color: #007bff !important;
+}
+
+/* Labels and text */
+h1, h2, h3, h4, h5, h6, label, p, span, div, td, th {
+    color: #e0e0e0 !important;
+}
+
+/* Links */
+a {
+    color: #4da3ff !important;
+}
+a:hover {
+    color: #80bfff !important;
+}
+
+/* Badges */
+.badge {
+    color: #ffffff !important;
+}
+
+/* Backgrounds cleanup */
+.bg-white, .bg-light {
+    background-color: #2b2b2b !important;
+}
+
+/* --- BRAND BUTTONS FIX --- */
+/* Add Buttons */
+.btn-success, .addlink, .btn-outline-success {
+    background-color: #6B1A2A !important;
+    border-color: #6B1A2A !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+.btn-success:hover, .addlink:hover {
+    background-color: #4A1020 !important;
+    border-color: #4A1020 !important;
+}
+
+/* Change / View / Edit Buttons */
+.btn-info, .btn-primary, .changelink, .btn-outline-info, .btn-outline-primary {
+    background-color: #3d3d3d !important;
+    border-color: #4d4d4d !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+.btn-info:hover, .btn-primary:hover, .changelink:hover {
+    background-color: #4d4d4d !important;
+    border-color: #5d5d5d !important;
+}
+
+/* Sidebar Active Items */
+.nav-sidebar .nav-item > .nav-link.active {
+    background-color: #6B1A2A !important;
+    color: #ffffff !important;
+}
+
+/* Table Actions Alignment Fix */
+.btn-sm, .btn-xs {
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
+}
