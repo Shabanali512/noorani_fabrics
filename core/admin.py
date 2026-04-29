@@ -115,10 +115,13 @@ class OrderAdmin(admin.ModelAdmin):
                 else:
                     html += f'<div style="font-size: 10px; color: #888; padding: 5px; border: 1px dashed #555; border-radius: 4px; margin-bottom: 5px;">Product ID: {item.get("id")} (Deleted)</div>'
             html += '</div>'
-            return format_html(html)
+            from django.utils.safestring import mark_safe
+            return mark_safe(html)
         except Exception:
-            return format_html('<span style="color: #e74c3c; font-size: 10px;">⚠️ Error Loading Items</span>')
+            from django.utils.safestring import mark_safe
+            return mark_safe('<span style="color: #e74c3c; font-size: 10px;">⚠️ Error Loading Items</span>')
     items_ordered.short_description = "Products Ordered"
+
 
     def address_preview(self, obj):
         addr = obj.address or ""
