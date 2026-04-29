@@ -53,19 +53,20 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = ('-created_at',)
     
     def order_info(self, obj):
-        date = obj.created_at.strftime("%d %b, %H:%M")
+        date_str = obj.created_at.strftime("%d %b, %H:%M") if obj.created_at else "No Date"
         return format_html(
             '<div style="line-height: 1.4; min-width: 120px;">'
-            '<strong style="color: #ffc107; font-size: 14px;">#NF-{}</strong><br>'
-            '<small style="color: #aaa;">{}</small><br>'
-            '<span style="background: #444; color: #eee; font-size: 9px; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px;">{}</span>'
+            '<strong style="color: #ffc107; font-size: 14px;">#NF-{0}</strong><br>'
+            '<small style="color: #aaa;">{1}</small><br>'
+            '<span style="background: #444; color: #eee; font-size: 9px; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px;">{2}</span>'
             '</div>',
-            obj.id, date, obj.payment_method
+            obj.id, date_str, obj.payment_method or "COD"
         )
     order_info.short_description = "Order Details"
 
     def customer_info(self, obj):
-        phone_clean = obj.phone.replace('+', '').replace(' ', '') if obj.phone else ""
+        phone = obj.phone or ""
+        phone_clean = phone.replace('+', '').replace(' ', '')
         whatsapp_url = f"https://wa.me/{phone_clean}"
         return format_html(
             '<div style="line-height: 1.4; min-width: 180px;">'
@@ -76,13 +77,14 @@ class OrderAdmin(admin.ModelAdmin):
             '</a><br>'
             '<small style="color: #888;">{3}</small>'
             '</div>',
-            obj.customer_name, obj.phone, whatsapp_url, obj.email
+            obj.customer_name or "Unknown", phone, whatsapp_url, obj.email or ""
         )
     customer_info.short_description = "Customer"
 
     def items_ordered(self, obj):
+        if not obj.items_json:
+            return "No items"
         try:
-            # Robust parsing for both JSON and single-quote string representations
             if isinstance(obj.items_json, str):
                 try:
                     items = json.loads(obj.items_json.replace("'", '"'))
@@ -92,9 +94,12 @@ class OrderAdmin(admin.ModelAdmin):
             else:
                 items = obj.items_json
                 
+            if not isinstance(items, list):
+                return "Invalid data"
+
             html = '<div style="width: 260px;">'
             for item in items:
-                p = Product.objects.filter(id=item['id']).first()
+                p = Product.objects.filter(id=item.get('id')).first()
                 if p:
                     img_url = p.img.url if hasattr(p.img, 'url') else str(p.img)
                     html += format_html(
@@ -105,19 +110,20 @@ class OrderAdmin(admin.ModelAdmin):
                         '<div style="font-size: 10px; color: #ffc107; font-weight: 600;">{2}x <span style="background:#555; padding:0 3px; border-radius:2px;">{3}</span></div>'
                         '</div>'
                         '</div>',
-                        img_url, p.name[:25], item.get('qty', 1), item.get('size', '').upper()
+                        img_url, p.name[:25], item.get('qty', 1), str(item.get('size', '')).upper()
                     )
                 else:
-                    html += f'<div style="font-size: 10px; color: #888; padding: 5px; border: 1px dashed #555; border-radius: 4px; margin-bottom: 5px;">Product ID: {item["id"]} (Deleted)</div>'
+                    html += f'<div style="font-size: 10px; color: #888; padding: 5px; border: 1px dashed #555; border-radius: 4px; margin-bottom: 5px;">Product ID: {item.get("id")} (Deleted)</div>'
             html += '</div>'
             return format_html(html)
-        except Exception as e:
-            return format_html('<span style="color: #e74c3c; font-size: 10px; font-weight: bold;">⚠️ Error Loading Items</span>')
+        except Exception:
+            return format_html('<span style="color: #e74c3c; font-size: 10px;">⚠️ Error Loading Items</span>')
     items_ordered.short_description = "Products Ordered"
 
     def address_preview(self, obj):
-        short_addr = obj.address[:45] + "..." if len(obj.address) > 45 else obj.address
-        return format_html('<span title="{}" style="color: #ccc; font-size: 11px; cursor: help; display: block; max-width: 150px; line-height: 1.3;">{}</span>', obj.address, short_addr)
+        addr = obj.address or ""
+        short_addr = addr[:45] + "..." if len(addr) > 45 else addr
+        return format_html('<span title="{}" style="color: #ccc; font-size: 11px; cursor: help; display: block; max-width: 150px; line-height: 1.3;">{}</span>', addr, short_addr)
     address_preview.short_description = "Shipping Address"
 
     def status_badge(self, obj):
@@ -137,7 +143,7 @@ class OrderAdmin(admin.ModelAdmin):
     status_badge.short_description = "Status"
 
     def order_id_styled(self, obj):
-        return format_html('<strong style="color: #ffc107; font-size: 20px;">#NF-{}</strong>', obj.id)
+        return format_html('<strong style="color: #ffc107; font-size: 20px;">#NF-{0}</strong>', obj.id)
     order_id_styled.short_description = "Order ID"
 
     fieldsets = (
@@ -157,6 +163,8 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     def formatted_items(self, obj):
+        if not obj.items_json:
+            return "No items recorded"
         try:
             if isinstance(obj.items_json, str):
                 try:
@@ -167,9 +175,12 @@ class OrderAdmin(admin.ModelAdmin):
             else:
                 items = obj.items_json
 
+            if not isinstance(items, list):
+                return str(obj.items_json)
+
             html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; padding: 10px; background: #1a1a1a; border-radius: 8px;">'
             for item in items:
-                p = Product.objects.filter(id=item['id']).first()
+                p = Product.objects.filter(id=item.get('id')).first()
                 if p:
                     img_url = p.img.url if hasattr(p.img, 'url') else str(p.img)
                     html += format_html(
@@ -181,12 +192,14 @@ class OrderAdmin(admin.ModelAdmin):
                         '<div style="color: #ffc107; font-size: 12px; font-weight: 600; margin-top: 5px;">Quantity: <span style="color:#fff; background:#444; padding:2px 6px; border-radius:4px;">{3}</span></div>'
                         '</div>'
                         '</div>',
-                        img_url, p.name, item.get('size', '').upper(), item.get('qty', 1)
+                        img_url, p.name, str(item.get('size', '')).upper(), item.get('qty', 1)
                     )
             html += '</div>'
             return format_html(html)
         except Exception as e:
-            return format_html('<div style="color: #e74c3c; padding: 10px; border: 1px dashed #e74c3c; border-radius: 4px;">Error formatting items: {}</div>', str(e))
+            return format_html('<div style="color: #e74c3c; padding: 10px; border: 1px dashed #e74c3c; border-radius: 4px;">Error formatting items: {0}</div>', str(e))
+    formatted_items.short_description = "Items Ordered"
+
     formatted_items.short_description = "Items Ordered"
 
 
