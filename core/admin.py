@@ -82,24 +82,42 @@ class OrderAdmin(admin.ModelAdmin):
 
     def items_ordered(self, obj):
         try:
-            items = json.loads(obj.items_json)
-            html = '<div style="width: 220px;">'
+            # Robust parsing for both JSON and single-quote string representations
+            if isinstance(obj.items_json, str):
+                try:
+                    items = json.loads(obj.items_json.replace("'", '"'))
+                except:
+                    import ast
+                    items = ast.literal_eval(obj.items_json)
+            else:
+                items = obj.items_json
+                
+            html = '<div style="width: 260px;">'
             for item in items:
                 p = Product.objects.filter(id=item['id']).first()
-                name = p.name[:22] + "..." if p and len(p.name) > 22 else (p.name if p else f"ID:{item['id']}")
-                html += f'<div style="font-size: 11px; margin-bottom: 4px; border-bottom: 1px solid #444; padding-bottom: 2px; display: flex; justify-content: space-between;">' \
-                        f'<span style="color: #eee;">• {name}</span> ' \
-                        f'<span style="color: #ffc107; font-weight: bold;">{item.get("qty", 1)}x {item.get("size", "").upper()}</span>' \
-                        f'</div>'
+                if p:
+                    img_url = p.img.url if hasattr(p.img, 'url') else str(p.img)
+                    html += format_html(
+                        '<div style="display: flex; align-items: center; margin-bottom: 6px; background: #333; padding: 5px; border-radius: 6px; border: 1px solid #444;">'
+                        '<img src="{0}" style="width: 35px; height: 45px; object-fit: cover; border-radius: 3px; margin-right: 10px; border: 1px solid #555;">'
+                        '<div style="line-height: 1.2;">'
+                        '<div style="font-size: 11px; color: #fff; font-weight: 700; margin-bottom: 2px;">{1}</div>'
+                        '<div style="font-size: 10px; color: #ffc107; font-weight: 600;">{2}x <span style="background:#555; padding:0 3px; border-radius:2px;">{3}</span></div>'
+                        '</div>'
+                        '</div>',
+                        img_url, p.name[:25], item.get('qty', 1), item.get('size', '').upper()
+                    )
+                else:
+                    html += f'<div style="font-size: 10px; color: #888; padding: 5px; border: 1px dashed #555; border-radius: 4px; margin-bottom: 5px;">Product ID: {item["id"]} (Deleted)</div>'
             html += '</div>'
             return format_html(html)
-        except:
-            return "Error loading items"
+        except Exception as e:
+            return format_html('<span style="color: #e74c3c; font-size: 10px; font-weight: bold;">⚠️ Error Loading Items</span>')
     items_ordered.short_description = "Products Ordered"
 
     def address_preview(self, obj):
         short_addr = obj.address[:45] + "..." if len(obj.address) > 45 else obj.address
-        return format_html('<span title="{}" style="color: #ccc; font-size: 11px; cursor: help;">{}</span>', obj.address, short_addr)
+        return format_html('<span title="{}" style="color: #ccc; font-size: 11px; cursor: help; display: block; max-width: 150px; line-height: 1.3;">{}</span>', obj.address, short_addr)
     address_preview.short_description = "Shipping Address"
 
     def status_badge(self, obj):
@@ -112,14 +130,14 @@ class OrderAdmin(admin.ModelAdmin):
         }
         color = colors.get(obj.status, '#333')
         return format_html(
-            '<div style="background: {}; color: #fff; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 10px; text-align: center; text-transform: uppercase; width: 90px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">'
-            '{}</div>',
+            '<div style="background: {0}; color: #fff; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 10px; text-align: center; text-transform: uppercase; width: 90px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);">'
+            '{1}</div>',
             color, obj.get_status_display()
         )
     status_badge.short_description = "Status"
 
     def order_id_styled(self, obj):
-        return format_html('<strong style="color: #6B1A2A; font-size: 18px;">#NF-{}</strong>', obj.id)
+        return format_html('<strong style="color: #ffc107; font-size: 20px;">#NF-{}</strong>', obj.id)
     order_id_styled.short_description = "Order ID"
 
     fieldsets = (
@@ -140,18 +158,35 @@ class OrderAdmin(admin.ModelAdmin):
 
     def formatted_items(self, obj):
         try:
-            items = json.loads(obj.items_json)
-            html = '<table style="width:100%; border-collapse: collapse; background: #333; color: white; border-radius: 8px; overflow: hidden;">'
-            html += '<tr style="background: #1a1a1a; text-align: left;"><th style="padding: 12px;">Product</th><th style="padding: 12px;">Size</th><th style="padding: 12px;">Qty</th></tr>'
+            if isinstance(obj.items_json, str):
+                try:
+                    items = json.loads(obj.items_json.replace("'", '"'))
+                except:
+                    import ast
+                    items = ast.literal_eval(obj.items_json)
+            else:
+                items = obj.items_json
+
+            html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; padding: 10px; background: #1a1a1a; border-radius: 8px;">'
             for item in items:
                 p = Product.objects.filter(id=item['id']).first()
-                name = p.name if p else f"Product ID: {item['id']}"
-                html += f'<tr><td style="padding: 10px; border-top: 1px solid #444;">{name}</td>'
-                html += f'<td style="padding: 10px; border-top: 1px solid #444;">{item["size"].upper()}</td>'
-                html += f'<td style="padding: 10px; border-top: 1px solid #444;">{item["qty"]}</td></tr>'
-            html += '</table>'
+                if p:
+                    img_url = p.img.url if hasattr(p.img, 'url') else str(p.img)
+                    html += format_html(
+                        '<div style="background: #2b2b2b; border: 1px solid #444; padding: 12px; border-radius: 10px; display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">'
+                        '<img src="{0}" style="width: 70px; height: 90px; object-fit: cover; border-radius: 6px; margin-right: 15px; border: 1px solid #555;">'
+                        '<div>'
+                        '<div style="font-weight: 800; color: #fff; font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">{1}</div>'
+                        '<div style="color: #ffc107; font-size: 12px; font-weight: 600;">Size: <span style="color:#fff; background:#444; padding:2px 6px; border-radius:4px;">{2}</span></div>'
+                        '<div style="color: #ffc107; font-size: 12px; font-weight: 600; margin-top: 5px;">Quantity: <span style="color:#fff; background:#444; padding:2px 6px; border-radius:4px;">{3}</span></div>'
+                        '</div>'
+                        '</div>',
+                        img_url, p.name, item.get('size', '').upper(), item.get('qty', 1)
+                    )
+            html += '</div>'
             return format_html(html)
-        except:
-            return obj.items_json
+        except Exception as e:
+            return format_html('<div style="color: #e74c3c; padding: 10px; border: 1px dashed #e74c3c; border-radius: 4px;">Error formatting items: {}</div>', str(e))
     formatted_items.short_description = "Items Ordered"
+
 
