@@ -65,15 +65,16 @@ class OrderAdmin(admin.ModelAdmin):
     order_info.short_description = "Order Details"
 
     def customer_info(self, obj):
-        whatsapp_url = f"https://wa.me/{obj.phone.replace('+', '').replace(' ', '')}"
+        phone_clean = obj.phone.replace('+', '').replace(' ', '') if obj.phone else ""
+        whatsapp_url = f"https://wa.me/{phone_clean}"
         return format_html(
             '<div style="line-height: 1.4; min-width: 180px;">'
-            '<strong style="font-size: 14px; color: #fff;">{}</strong><br>'
-            '<a href="tel:{0}" style="color: #4da3ff; font-size: 12px; font-weight: 600;">{}</a> '
-            '<a href="{}" target="_blank" title="WhatsApp Customer" style="margin-left: 5px; vertical-align: middle;">'
+            '<strong style="font-size: 14px; color: #fff;">{0}</strong><br>'
+            '<a href="tel:{1}" style="color: #4da3ff; font-size: 12px; font-weight: 600;">{1}</a> '
+            '<a href="{2}" target="_blank" title="WhatsApp Customer" style="margin-left: 5px; vertical-align: middle;">'
             '<i class="fab fa-whatsapp" style="color: #25D366; font-size: 16px;"></i>'
             '</a><br>'
-            '<small style="color: #888;">{}</small>'
+            '<small style="color: #888;">{3}</small>'
             '</div>',
             obj.customer_name, obj.phone, whatsapp_url, obj.email
         )
