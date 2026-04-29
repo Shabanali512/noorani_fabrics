@@ -19,12 +19,12 @@ from django.urls import path, re_path
 from core.views import product_list, category_list, create_order
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
-from django.views.static import serve
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('index.html', RedirectView.as_view(url='/', permanent=True)),
     path('api/products/', product_list, name='product-list'),
     path('api/categories/', category_list, name='category-list'),
     path('api/orders/', create_order, name='create-order'),
