@@ -3162,7 +3162,7 @@ button {
     .btn-buy-now,
     .btn-pay-advance,
     .btn-happy-customers {
-      width: 100% !important;
+      width: 80% !important;
       max-width: none !important;
       border-radius: 4px !important;
       /* Premium brands use less rounding or sharp corners */
@@ -3171,7 +3171,7 @@ button {
       font-weight: 700 !important;
       text-transform: uppercase !important;
       letter-spacing: 1px !important;
-      margin: 8px 0 !important;
+      margin: 8px auto !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
