@@ -33,12 +33,13 @@ html {
   scroll-behavior: smooth
 }
 
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-    position: relative;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -711,9 +712,12 @@ button {
     -ms-overflow-style: none;
     width: calc(100% + 30px);
   }
+
   .product-grid.swipable::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
+    display: none;
+    /* Hide scrollbar Chrome/Safari */
   }
+
   .product-grid.swipable .product-card {
     min-width: 260px;
     max-width: 260px;
@@ -3018,165 +3022,208 @@ button {
   .pd-gallery {
     flex-direction: column-reverse;
   }
+
   .pd-main-wrap {
     overflow: hidden;
     position: relative;
   }
+
   .pd-main-img {
     transition: transform 0.3s ease;
   }
-  
-/* --- MOBILE HEADER POLISH --- */
-@media (max-width: 768px) {
-  .nav-wrap {
-    display: flex !important;
-    justify-content: space-between !important;
-    padding: 0 15px !important;
-  }
-  .nav-logo img {
-    height: 52px !important; /* Larger, more prominent logo */
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  }
-}
 
-/* --- REFINED MOBILE BUTTONS --- */
-@media (max-width: 768px) {
-  .pd-name { font-size: 20px; font-weight: 700; color: #333; margin-top: 15px; }
-  .pd-prices { margin-bottom: 20px; }
-  
-  .size-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50% !important;
-    border: 1px solid #ddd;
-    background: transparent;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
-  }
-  .size-btn.active {
-    background: #6B1A2A;
-    color: #fff;
-    border-color: #6B1A2A;
+  /* --- MOBILE HEADER POLISH --- */
+  @media (max-width: 768px) {
+    .nav-wrap {
+      display: flex !important;
+      justify-content: space-between !important;
+      padding: 0 15px !important;
+    }
+
+    .nav-logo img {
+      height: 52px !important;
+      /* Larger, more prominent logo */
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
   }
 
-  .qty-add-row {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  /* Row 1: Qty + Wishlist + Compare */
-  .qty-wish-comp-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-  }
-  .qty-ctrl {
-    flex: 2;
-    border-radius: 25px !important;
-    border: 1px solid #6B1A2A !important;
-    height: 48px;
-  }
-  .btn-icon-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50% !important;
-    border: 1px solid #aaa !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
+  /* --- REFINED MOBILE BUTTONS --- */
+  @media (max-width: 768px) {
+    .pd-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #333;
+      margin-top: 15px;
+    }
+
+    .pd-prices {
+      margin-bottom: 20px;
+    }
+
+    .size-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50% !important;
+      border: 1px solid #ddd;
+      background: transparent;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+
+    .size-btn.active {
+      background: #6B1A2A;
+      color: #fff;
+      border-color: #6B1A2A;
+    }
+
+    .qty-add-row {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Row 1: Qty + Wishlist + Compare */
+    .qty-wish-comp-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .qty-ctrl {
+      flex: 2;
+      border-radius: 25px !important;
+      border: 1px solid #6B1A2A !important;
+      height: 48px;
+    }
+
+    .btn-icon-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50% !important;
+      border: 1px solid #aaa !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    /* --- ULTIMATE PREMIUM MOBILE UI (Shopify/Nazmira Style) --- */
+    .pd-name {
+      font-size: 24px !important;
+      font-weight: 800 !important;
+      color: #222 !important;
+      text-align: left !important;
+      margin-top: 10px !important;
+      line-height: 1.2 !important;
+    }
+
+    .pd-prices {
+      text-align: left !important;
+      margin-bottom: 15px !important;
+      font-size: 20px !important;
+    }
+
+    .size-guide-row {
+      justify-content: flex-start !important;
+      margin-bottom: 10px !important;
+    }
+
+    .size-btns {
+      justify-content: flex-start !important;
+    }
+
+    .qty-wish-comp-row {
+      justify-content: flex-start !important;
+      gap: 10px !important;
+      margin-bottom: 15px !important;
+    }
+
+    .qty-ctrl {
+      flex: 1 !important;
+      max-width: 100px !important;
+      height: 52px !important;
+      border-radius: 4px !important;
+      border: 1px solid #e0e0e0 !important;
+      background: #fdfdfd !important;
+    }
+
+    .btn-icon-circle {
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 4px !important;
+      /* Square-ish premium look */
+      border: 1px solid #e0e0e0 !important;
+    }
+
+    .btn-add-cart,
+    .btn-buy-now,
+    .btn-pay-advance,
+    .btn-happy-customers {
+      width: 100% !important;
+      max-width: none !important;
+      border-radius: 4px !important;
+      /* Premium brands use less rounding or sharp corners */
+      height: 52px !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      margin: 8px 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border: none !important;
+    }
+
+    .btn-add-cart {
+      background: #6B1A2A !important;
+      color: #fff !important;
+    }
+
+    .btn-buy-now {
+      background: #333 !important;
+      color: #fff !important;
+    }
+
+    .btn-pay-advance {
+      background: #FF0066 !important;
+      height: 46px !important;
+    }
+
+    .btn-happy-customers {
+      background: #00A8FF !important;
+      height: 46px !important;
+    }
+
+    /* Premium Review Card */
+    .pd-review-box {
+      background: #fff !important;
+      border: 1px solid #f0f0f0 !important;
+      padding: 15px !important;
+      border-radius: 8px !important;
+      margin-top: 20px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+      text-align: left !important;
+      display: block !important;
+    }
+
+    .review-avatar {
+      background: #6B1A2A !important;
+      color: #fff !important;
+      margin-bottom: 10px !important;
+    }
+
+    .review-content p {
+      font-size: 14px !important;
+      color: #444 !important;
+      font-style: normal !important;
+      line-height: 1.4 !important;
+    }
   }
 
-  /* --- ULTIMATE PREMIUM MOBILE UI (Shopify/Nazmira Style) --- */
-  .pd-name { 
-    font-size: 24px !important; 
-    font-weight: 800 !important; 
-    color: #222 !important; 
-    text-align: left !important;
-    margin-top: 10px !important;
-    line-height: 1.2 !important;
-  }
-  .pd-prices { 
-    text-align: left !important;
-    margin-bottom: 15px !important; 
-    font-size: 20px !important;
-  }
-  .size-guide-row {
-    justify-content: flex-start !important;
-    margin-bottom: 10px !important;
-  }
-  .size-btns {
-    justify-content: flex-start !important;
-  }
-  
-  .qty-wish-comp-row {
-    justify-content: flex-start !important;
-    gap: 10px !important;
-    margin-bottom: 15px !important;
-  }
-  .qty-ctrl {
-    flex: 1 !important;
-    max-width: 130px !important;
-    height: 48px !important;
-    border-radius: 4px !important;
-    border: 1px solid #e0e0e0 !important;
-    background: #fdfdfd !important;
-  }
-  .btn-icon-circle {
-    width: 48px !important;
-    height: 48px !important;
-    border-radius: 4px !important; /* Square-ish premium look */
-    border: 1px solid #e0e0e0 !important;
-  }
-
-  .btn-add-cart, .btn-buy-now, .btn-pay-advance, .btn-happy-customers {
-    width: 100% !important;
-    max-width: none !important;
-    border-radius: 4px !important; /* Premium brands use less rounding or sharp corners */
-    height: 52px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    margin: 8px 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: none !important;
-  }
-
-  .btn-add-cart { background: #6B1A2A !important; color: #fff !important; }
-  .btn-buy-now { background: #333 !important; color: #fff !important; }
-  .btn-pay-advance { background: #FF0066 !important; height: 46px !important; }
-  .btn-happy-customers { background: #00A8FF !important; height: 46px !important; }
-
-  /* Premium Review Card */
-  .pd-review-box {
-    background: #fff !important;
-    border: 1px solid #f0f0f0 !important;
-    padding: 15px !important;
-    border-radius: 8px !important;
-    margin-top: 20px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-    text-align: left !important;
-    display: block !important;
-  }
-  .review-avatar {
-    background: #6B1A2A !important;
-    color: #fff !important;
-    margin-bottom: 10px !important;
-  }
-  .review-content p {
-    font-size: 14px !important;
-    color: #444 !important;
-    font-style: normal !important;
-    line-height: 1.4 !important;
-  }
-}
   .review-avatar {
     width: 40px;
     height: 40px;
@@ -3189,24 +3236,42 @@ button {
     color: #999;
     flex-shrink: 0;
   }
-  .review-content p { font-style: italic; font-size: 13px; color: #666; margin: 0; }
-  .review-stars { color: #FFB400; font-size: 12px; margin: 5px 0; }
-  .review-author { font-size: 12px; color: #999; }
+
+  .review-content p {
+    font-style: italic;
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+  }
+
+  .review-stars {
+    color: #FFB400;
+    font-size: 12px;
+    margin: 5px 0;
+  }
+
+  .review-author {
+    font-size: 12px;
+    color: #999;
+  }
 }
 
 /* Scroll Indicators for Swipable Sections */
 .swipe-indicator {
-    display: none;
-    text-align: center;
-    font-size: 11px;
-    color: var(--text-3);
-    margin-top: -10px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  display: none;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: -10px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
+
 @media (max-width: 768px) {
-    .swipe-indicator { display: block; }
+  .swipe-indicator {
+    display: block;
+  }
 }
 
 @media(max-width:480px) {
