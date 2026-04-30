@@ -3164,7 +3164,7 @@ button {
     .btn-buy-now,
     .btn-pay-advance,
     .btn-happy-customers {
-      width: calc(100% - 32px) !important; /* Guaranteed margin on both sides */
+      width: auto !important; /* Let block/flex behavior handle the width naturally */
       max-width: none !important;
       border-radius: 6px !important;
       height: 52px !important;
@@ -3172,7 +3172,7 @@ button {
       font-weight: 700 !important;
       text-transform: uppercase !important;
       letter-spacing: 1px !important;
-      margin: 8px 16px !important; /* Explicit 16px margin on both sides */
+      margin: 8px 16px !important; /* 16px margin on both sides */
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
