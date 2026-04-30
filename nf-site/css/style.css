@@ -3026,29 +3026,20 @@ button {
     transition: transform 0.3s ease;
   }
   
-/* --- PREMIUM MOBILE HEADER (Nazmira Style) --- */
+/* --- MOBILE HEADER POLISH --- */
 @media (max-width: 768px) {
   .nav-wrap {
-    display: grid !important;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 15px !important;
   }
-  .hamburger {
-    grid-column: 1;
-    margin-right: auto;
-  }
-  .nav-logo {
-    grid-column: 2;
-    text-align: center;
-    margin: 0 auto;
-  }
-  .nav-icons {
-    grid-column: 3;
-    justify-content: flex-end;
+  .nav-logo img {
+    height: 52px !important; /* Larger, more prominent logo */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   }
 }
 
-/* --- PREMIUM PRODUCT PAGE (Mobile) --- */
+/* --- REFINED MOBILE BUTTONS --- */
 @media (max-width: 768px) {
   .pd-name { font-size: 20px; font-weight: 700; color: #333; margin-top: 15px; }
   .pd-prices { margin-bottom: 20px; }
@@ -3100,57 +3091,36 @@ button {
     background: #fff;
   }
 
-  /* Main Action Buttons */
+  /* Re-aligning Buttons to be smaller and centered */
+  .qty-wish-comp-row {
+    justify-content: center;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
   .btn-add-cart, .btn-buy-now {
-    width: 100%;
-    height: 52px;
-    border-radius: 26px !important;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    width: 90% !important;
+    max-width: 320px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    height: 46px !important; /* Smaller height */
+    font-size: 13px !important;
   }
-  .btn-add-cart { background: #6B1A2A !important; }
-  .btn-buy-now { background: #4A1020 !important; margin-top: 5px; }
-
-  /* Utility Buttons */
-  .btn-pay-advance {
-    background: #E91E63 !important;
-    height: 48px;
-    border-radius: 8px !important;
-    font-size: 13px;
-    margin-top: 10px;
-    color: #fff;
-    font-weight: 600;
-  }
-  .btn-happy-customers {
-    background: #008DFF !important;
-    height: 48px;
-    border-radius: 8px !important;
-    font-size: 13px;
-    margin-top: 10px;
-    color: #fff;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  
+  .btn-pay-advance, .btn-happy-customers {
+    width: 85% !important;
+    max-width: 300px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    height: 36px !important;
+    font-size: 10px !important;
   }
 
-  /* Review Box */
   .pd-review-box {
-    background: #F4F4F4;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 25px;
-    position: relative;
-    display: flex;
-    gap: 15px;
-    align-items: flex-start;
+    max-width: 320px;
+    margin: 25px auto 0 auto;
   }
+}
   .review-avatar {
     width: 40px;
     height: 40px;
