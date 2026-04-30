@@ -3172,7 +3172,7 @@ button {
       font-weight: 700 !important;
       text-transform: uppercase !important;
       letter-spacing: 1px !important;
-      margin: 8px auto !important; /* Center to distribute margin equally */
+      margin: 8px 16px !important; /* Explicit 16px margin on both sides */
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
