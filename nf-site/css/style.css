@@ -3162,7 +3162,7 @@ button {
     .btn-buy-now,
     .btn-pay-advance,
     .btn-happy-customers {
-      width: 80% !important;
+      width: 100% !important;
       max-width: none !important;
       border-radius: 6px !important;
       /* Premium brands use less rounding or sharp corners */
