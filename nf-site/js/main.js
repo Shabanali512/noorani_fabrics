@@ -152,8 +152,9 @@ function renderProductCard(p, basePath=""){
   const disc=discPct(p.price,p.oldPrice);
   return `
   <div class="product-card reveal" data-id="${p.id}">
+    <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
     <div class="product-card-img">
-      <img class="img-front" src="${p.img}" alt="${p.name}" loading="lazy" onclick="location.href='${basePath}product.html?id=${p.id}'"/>
+      <img class="img-front" src="${p.img}" alt="${p.name}" loading="lazy"/>
       <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" loading="lazy"/>
       ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
       <button class="qv-trigger" onclick="event.stopPropagation();openQuickView(${p.id})">Quick View</button>
@@ -164,7 +165,7 @@ function renderProductCard(p, basePath=""){
         </button>
       </div>
     </div>
-    <div class="product-info" onclick="location.href='${basePath}product.html?id=${p.id}'">
+    <div class="product-info">
       <div class="product-name">${p.name}</div>
       <div class="product-prices">
         <span class="price-orig">${fmtPrice(p.oldPrice)}</span>
@@ -179,9 +180,11 @@ function renderSaleCard(p, basePath=""){
   const disc=discPct(p.price,p.oldPrice);
   const pct=Math.min(Math.round(p.sold/(p.sold+p.stock)*100),100);
   return `
-  <div class="sale-card reveal" onclick="location.href='${basePath}product.html?id=${p.id}'">
+  <div class="sale-card reveal">
+    <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
     <div class="sale-card-img">
-      <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+      <img class="img-front" src="${p.img}" alt="${p.name}" loading="lazy"/>
+      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" loading="lazy"/>
       ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
     </div>
     <div class="stock-bar-wrap">

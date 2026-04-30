@@ -193,7 +193,8 @@ button {
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .hamburger {
@@ -517,7 +518,20 @@ button {
 
 .product-card {
   position: relative;
-  cursor: pointer
+  cursor: pointer;
+}
+
+.product-card-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.sale-card {
+  position: relative;
 }
 
 .product-card-img {
@@ -528,13 +542,6 @@ button {
   border-radius: 4px
 }
 
-.product-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .5s ease
-}
-
 .product-card-img .img-back {
   position: absolute;
   top: 0;
@@ -542,15 +549,26 @@ button {
   right: 0;
   bottom: 0;
   opacity: 0;
-  transition: opacity .5s ease
+  transition: opacity .6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform .6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.product-card:hover .img-back {
-  opacity: 1
+.product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity .6s ease;
 }
 
-.product-card:hover .img-front {
-  opacity: 0
+.product-card:hover .img-back,
+.product-card:active .img-back {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.product-card:hover .img-front,
+.product-card:active .img-front {
+  opacity: 0;
+  transform: scale(1.08);
 }
 
 .discount-badge {
@@ -575,12 +593,14 @@ button {
   opacity: 0;
   transform: translateY(8px);
   transition: all var(--tr);
-  z-index: 3
+  z-index: 10;
+  pointer-events: none;
 }
 
 .product-card:hover .quick-shop-wrap {
   opacity: 1;
-  transform: translateY(0)
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .quick-shop-btn {
@@ -594,7 +614,9 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 30px;
-  transition: background var(--tr)
+  transition: background var(--tr);
+  position: relative;
+  z-index: 11;
 }
 
 .quick-shop-btn:hover {
@@ -619,12 +641,14 @@ button {
   transition: all 0.3s ease;
   cursor: pointer;
   white-space: nowrap;
-  z-index: 4;
+  z-index: 12;
+  pointer-events: none;
 }
 
 .product-card:hover .qv-trigger {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
 }
 
 .qv-overlay {
@@ -1288,16 +1312,36 @@ button {
   background: var(--light-gray)
 }
 
+.sale-card-img .img-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity .6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform .6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .sale-card-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .5s ease
+  transition: transform .6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity .6s ease;
 }
 
-.sale-card:hover .sale-card-img img {
-  transform: scale(1.04)
+.sale-card:hover .img-back,
+.sale-card:active .img-back {
+  opacity: 1;
+  transform: scale(1.08);
 }
+
+.sale-card:hover .img-front,
+.sale-card:active .img-front {
+  opacity: 0;
+  transform: scale(1.08);
+}
+
+
 
 .stock-bar-wrap {
   padding: 8px 0

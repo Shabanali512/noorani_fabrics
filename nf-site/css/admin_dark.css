@@ -1,7 +1,7 @@
 /* ULTIMATE DARK MODE OVERRIDE */
 
-html, body, .wrapper, .content-wrapper, .main-header, .main-sidebar, .main-footer, .content-header, .login-page {
-    background-color: #222222 !important;
+html, body, .wrapper, .content-wrapper, .main-header, .main-sidebar, .main-footer, .content-header, .content, .container-fluid, .login-page {
+    background-color: #121212 !important;
     color: #e0e0e0 !important;
 }
 
@@ -90,8 +90,15 @@ a:hover {
 }
 
 /* Backgrounds cleanup */
-.bg-white, .bg-light {
-    background-color: #2b2b2b !important;
+.bg-white, .bg-light, [class*="bg-white"], [class*="bg-light"] {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+}
+
+/* Dashboard Fixes */
+.content-wrapper > .content, 
+.content-wrapper > .content-header {
+    background-color: #121212 !important;
 }
 
 /* --- BRAND BUTTONS FIX --- */
