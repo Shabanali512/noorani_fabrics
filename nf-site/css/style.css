@@ -33,6 +33,14 @@ html {
   scroll-behavior: smooth
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
 body {
   font-family: var(--font-b);
   color: var(--text);
@@ -687,6 +695,31 @@ button {
 
 .qv-overlay.open .qv-modal {
   transform: scale(1) translateY(0);
+}
+
+/* Mobile Horizontal Swiping (Scroll Snap) */
+@media (max-width: 768px) {
+  .product-grid.swipable {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 5px 15px 25px 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: calc(100% + 30px);
+  }
+  .product-grid.swipable::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+  .product-grid.swipable .product-card {
+    min-width: 260px;
+    max-width: 260px;
+    scroll-snap-align: center;
+    margin-bottom: 0 !important;
+  }
 }
 
 .qv-close {
@@ -2980,6 +3013,76 @@ button {
     min-height: 48px;
     min-width: 48px;
   }
+
+  /* Detail Gallery Swipe Support */
+  .pd-gallery {
+    flex-direction: column-reverse;
+  }
+  .pd-main-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .pd-main-img {
+    transition: transform 0.3s ease;
+  }
+  
+  /* Mobile Professional Buttons */
+  .qty-add-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .qty-ctrl {
+    width: 100px;
+    height: 44px;
+  }
+  .btn-add-cart {
+    flex: 1;
+    height: 44px;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .btn-wishlist-share {
+    width: 100%;
+    justify-content: center;
+    margin-top: 5px;
+    order: 3;
+  }
+  .btn-buy-now {
+    height: 46px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .btn-pay-advance, .btn-happy-customers {
+    height: 38px;
+    font-size: 11px;
+    padding: 0 15px;
+    margin-top: 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .pd-name {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+  .pd-prices {
+    margin-bottom: 15px;
+  }
+}
+
+/* Scroll Indicators for Swipable Sections */
+.swipe-indicator {
+    display: none;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: -10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+@media (max-width: 768px) {
+    .swipe-indicator { display: block; }
 }
 
 @media(max-width:480px) {

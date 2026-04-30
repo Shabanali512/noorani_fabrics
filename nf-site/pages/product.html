@@ -206,6 +206,40 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 
   initMouseZoom(".pd-main-wrap", "#pd-main-img");
 
+  // Swipe support for gallery
+  const mainImgWrap = document.querySelector(".pd-main-wrap");
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  mainImgWrap?.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+
+  mainImgWrap?.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, {passive: true});
+
+  function handleSwipe() {
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) < 50) return; // Ignore small movements
+
+    const activeThumb = document.querySelector(".pd-thumb.active");
+    const thumbs = Array.from(document.querySelectorAll(".pd-thumb"));
+    const curIdx = thumbs.indexOf(activeThumb);
+
+    let nextIdx;
+    if (diff > 0) {
+      // Swipe Left -> Next Image
+      nextIdx = (curIdx + 1) % thumbs.length;
+    } else {
+      // Swipe Right -> Prev Image
+      nextIdx = (curIdx - 1 + thumbs.length) % thumbs.length;
+    }
+    
+    thumbs[nextIdx].click();
+  }
+
   // Related products
   const related=window.PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
   const relatedGrid=document.getElementById("related-grid");
