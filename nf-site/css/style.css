@@ -3091,32 +3091,34 @@ button {
     background: #fff;
   }
 
-  /* Re-aligning Buttons to Full-Width & Left (As per latest screenshot) */
+  /* Center-aligned & Compact Buttons (Re-refined) */
   .qty-wish-comp-row {
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
-    margin: 0;
+    margin-bottom: 10px;
   }
   
   .btn-add-cart, .btn-buy-now {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 10px 0 0 0 !important;
-    height: 50px !important;
-    font-size: 14px !important;
+    width: 85% !important; /* Compact width */
+    max-width: 320px !important;
+    margin: 10px auto !important; /* Centered */
+    height: 44px !important;
+    font-size: 13px !important;
+    display: flex !important;
   }
   
   .btn-pay-advance, .btn-happy-customers {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 10px 0 0 0 !important;
-    height: 48px !important;
-    font-size: 12px !important;
+    width: 80% !important;
+    max-width: 280px !important;
+    margin: 10px auto !important; /* Centered */
+    height: 36px !important;
+    font-size: 10px !important;
+    display: flex !important;
   }
 
   .pd-review-box {
-    max-width: none;
-    margin: 25px 0 0 0;
+    max-width: 320px;
+    margin: 25px auto 0 auto; /* Centered */
   }
 }
   .review-avatar {
