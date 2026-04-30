@@ -149,28 +149,47 @@ document.addEventListener("DOMContentLoaded", async ()=>{
           ${p.sizes.map(s=>`<button class="size-btn ${s==='s'?'active':''}" onclick="selectSize(this,'${s}')">${s}</button>`).join("")}
         </div>
         <div class="qty-add-row">
-          <div class="qty-ctrl">
-            <button class="qty-btn" onclick="changeQty(-1)">−</button>
-            <span class="qty-val" id="qty-val">1</span>
-            <button class="qty-btn" onclick="changeQty(1)">+</button>
-          </div>
-          <button class="btn-add-cart" onclick="addToCartPD()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            ADD TO CART
-          </button>
-          <div class="btn-wishlist-share">
+          <div class="qty-wish-comp-row">
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <span class="qty-val" id="qty-val">1</span>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
             <button class="btn-icon-circle" id="wish-btn" onclick="togglePDWish()" title="Wishlist">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="${Wishlist.has(p.id)?'var(--maroon)':'none'}" stroke="${Wishlist.has(p.id)?'var(--maroon)':'currentColor'}" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="${Wishlist.has(p.id)?'var(--maroon)':'none'}" stroke="${Wishlist.has(p.id)?'var(--maroon)':'currentColor'}" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </button>
             <button class="btn-icon-circle" title="Compare">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 21H9v-5M21 3l-7 7M3 21l7-7"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 21H9v-5M21 3l-7 7M3 21l7-7"/></svg>
             </button>
           </div>
+          
+          <button class="btn-add-cart" onclick="addToCartPD()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            ADD TO CART
+          </button>
+
+          <button class="btn-buy-now" onclick="buyNow()">BUY IT NOW</button>
         </div>
-        <button class="btn-buy-now" onclick="buyNow()">BUY IT NOW</button>
+
         <button class="btn-pay-advance">🔒 Pay in Advance &amp; Continue to Checkout</button>
-        <button class="btn-happy-customers">👥 1,000,000+ HAPPY CUSTOMERS</button>
+        <button class="btn-happy-customers">
+          <div style="display:flex;margin-right:5px">
+            <img src="https://i.pravatar.cc/30?u=1" style="width:20px;height:20px;border-radius:50%;border:2px solid #fff"/>
+            <img src="https://i.pravatar.cc/30?u=2" style="width:20px;height:20px;border-radius:50%;border:2px solid #fff;margin-left:-8px"/>
+            <img src="https://i.pravatar.cc/30?u=3" style="width:20px;height:20px;border-radius:50%;border:2px solid #fff;margin-left:-8px"/>
+          </div>
+          1,000,000+ HAPPY CUSTOMERS
+        </button>
         
+        <div class="pd-review-box">
+          <div class="review-avatar">HI</div>
+          <div class="review-content">
+            <p>"Same as website images. Highly recommended."</p>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-author">— Hira K., Islamabad</div>
+          </div>
+        </div>
+
         <div class="pd-tabs" style="margin-top:24px">
           <div class="pd-tab-header">
             <button class="pd-tab-btn active" onclick="switchTab(this, 'desc')">Description</button>

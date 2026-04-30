@@ -3026,48 +3026,146 @@ button {
     transition: transform 0.3s ease;
   }
   
-  /* Mobile Professional Buttons */
+/* --- PREMIUM MOBILE HEADER (Nazmira Style) --- */
+@media (max-width: 768px) {
+  .nav-wrap {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+  }
+  .hamburger {
+    grid-column: 1;
+    margin-right: auto;
+  }
+  .nav-logo {
+    grid-column: 2;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .nav-icons {
+    grid-column: 3;
+    justify-content: flex-end;
+  }
+}
+
+/* --- PREMIUM PRODUCT PAGE (Mobile) --- */
+@media (max-width: 768px) {
+  .pd-name { font-size: 20px; font-weight: 700; color: #333; margin-top: 15px; }
+  .pd-prices { margin-bottom: 20px; }
+  
+  .size-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50% !important;
+    border: 1px solid #ddd;
+    background: transparent;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  .size-btn.active {
+    background: #6B1A2A;
+    color: #fff;
+    border-color: #6B1A2A;
+  }
+
   .qty-add-row {
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Row 1: Qty + Wishlist + Compare */
+  .qty-wish-comp-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
   }
   .qty-ctrl {
-    width: 100px;
-    height: 44px;
+    flex: 2;
+    border-radius: 25px !important;
+    border: 1px solid #6B1A2A !important;
+    height: 48px;
   }
-  .btn-add-cart {
-    flex: 1;
-    height: 44px;
-    font-size: 13px;
-    letter-spacing: 1px;
-  }
-  .btn-wishlist-share {
-    width: 100%;
+  .btn-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50% !important;
+    border: 1px solid #aaa !important;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 5px;
-    order: 3;
+    background: #fff;
   }
-  .btn-buy-now {
-    height: 46px;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-  .btn-pay-advance, .btn-happy-customers {
-    height: 38px;
-    font-size: 11px;
-    padding: 0 15px;
-    margin-top: 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
+
+  /* Main Action Buttons */
+  .btn-add-cart, .btn-buy-now {
+    width: 100%;
+    height: 52px;
+    border-radius: 26px !important;
     font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
-  .pd-name {
-    font-size: 22px;
+  .btn-add-cart { background: #6B1A2A !important; }
+  .btn-buy-now { background: #4A1020 !important; margin-top: 5px; }
+
+  /* Utility Buttons */
+  .btn-pay-advance {
+    background: #E91E63 !important;
+    height: 48px;
+    border-radius: 8px !important;
+    font-size: 13px;
     margin-top: 10px;
+    color: #fff;
+    font-weight: 600;
   }
-  .pd-prices {
-    margin-bottom: 15px;
+  .btn-happy-customers {
+    background: #008DFF !important;
+    height: 48px;
+    border-radius: 8px !important;
+    font-size: 13px;
+    margin-top: 10px;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
+
+  /* Review Box */
+  .pd-review-box {
+    background: #F4F4F4;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+    position: relative;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  .review-avatar {
+    width: 40px;
+    height: 40px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #999;
+    flex-shrink: 0;
+  }
+  .review-content p { font-style: italic; font-size: 13px; color: #666; margin: 0; }
+  .review-stars { color: #FFB400; font-size: 12px; margin: 5px 0; }
+  .review-author { font-size: 12px; color: #999; }
 }
 
 /* Scroll Indicators for Swipable Sections */
