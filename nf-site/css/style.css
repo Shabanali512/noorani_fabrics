@@ -3116,29 +3116,31 @@ button {
       font-weight: 800 !important;
       color: #222 !important;
       text-align: left !important;
-      margin-top: 10px !important;
+      margin: 10px 16px 0 16px !important; /* Good side margins */
       line-height: 1.2 !important;
     }
 
     .pd-prices {
       text-align: left !important;
-      margin-bottom: 15px !important;
+      margin: 5px 16px 15px 16px !important; /* Good side margins */
       font-size: 20px !important;
     }
 
     .size-guide-row {
       justify-content: flex-start !important;
-      margin-bottom: 10px !important;
+      margin: 0 16px 10px 16px !important; /* Good side margins */
     }
 
     .size-btns {
       justify-content: flex-start !important;
+      padding: 0 16px !important; /* Good side margins */
     }
 
     .qty-wish-comp-row {
       justify-content: flex-start !important;
       gap: 10px !important;
       margin-bottom: 15px !important;
+      padding: 0 16px !important; /* Good side margins */
     }
 
     .qty-ctrl {
@@ -3162,16 +3164,15 @@ button {
     .btn-buy-now,
     .btn-pay-advance,
     .btn-happy-customers {
-      width: 100% !important;
+      width: calc(100% - 32px) !important; /* Guaranteed margin on both sides */
       max-width: none !important;
       border-radius: 6px !important;
-      /* Premium brands use less rounding or sharp corners */
       height: 52px !important;
       font-size: 14px !important;
       font-weight: 700 !important;
       text-transform: uppercase !important;
       letter-spacing: 1px !important;
-      margin: 8px 0 !important;
+      margin: 8px auto !important; /* Center to distribute margin equally */
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -3198,13 +3199,12 @@ button {
       height: 46px !important;
     }
 
-    /* Premium Review Card */
     .pd-review-box {
       background: #fff !important;
       border: 1px solid #f0f0f0 !important;
       padding: 15px !important;
       border-radius: 8px !important;
-      margin-top: 20px !important;
+      margin: 20px 16px 0 16px !important; /* Good side margins */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
       text-align: left !important;
       display: block !important;
