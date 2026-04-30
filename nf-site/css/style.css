@@ -3091,34 +3091,90 @@ button {
     background: #fff;
   }
 
-  /* Center-aligned & Compact Buttons (Re-refined) */
+  /* --- ULTIMATE PREMIUM MOBILE UI (Shopify/Nazmira Style) --- */
+  .pd-name { 
+    font-size: 24px !important; 
+    font-weight: 800 !important; 
+    color: #222 !important; 
+    text-align: left !important;
+    margin-top: 10px !important;
+    line-height: 1.2 !important;
+  }
+  .pd-prices { 
+    text-align: left !important;
+    margin-bottom: 15px !important; 
+    font-size: 20px !important;
+  }
+  .size-guide-row {
+    justify-content: flex-start !important;
+    margin-bottom: 10px !important;
+  }
+  .size-btns {
+    justify-content: flex-start !important;
+  }
+  
   .qty-wish-comp-row {
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 10px;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    margin-bottom: 15px !important;
   }
-  
-  .btn-add-cart, .btn-buy-now {
-    width: 85% !important; /* Compact width */
-    max-width: 320px !important;
-    margin: 10px auto !important; /* Centered */
-    height: 44px !important;
-    font-size: 13px !important;
-    display: flex !important;
+  .qty-ctrl {
+    flex: 1 !important;
+    max-width: 130px !important;
+    height: 48px !important;
+    border-radius: 4px !important;
+    border: 1px solid #e0e0e0 !important;
+    background: #fdfdfd !important;
   }
-  
-  .btn-pay-advance, .btn-happy-customers {
-    width: 80% !important;
-    max-width: 280px !important;
-    margin: 10px auto !important; /* Centered */
-    height: 36px !important;
-    font-size: 10px !important;
-    display: flex !important;
+  .btn-icon-circle {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 4px !important; /* Square-ish premium look */
+    border: 1px solid #e0e0e0 !important;
   }
 
+  .btn-add-cart, .btn-buy-now, .btn-pay-advance, .btn-happy-customers {
+    width: 100% !important;
+    max-width: none !important;
+    border-radius: 4px !important; /* Premium brands use less rounding or sharp corners */
+    height: 52px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin: 8px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+  }
+
+  .btn-add-cart { background: #6B1A2A !important; color: #fff !important; }
+  .btn-buy-now { background: #333 !important; color: #fff !important; }
+  .btn-pay-advance { background: #FF0066 !important; height: 46px !important; }
+  .btn-happy-customers { background: #00A8FF !important; height: 46px !important; }
+
+  /* Premium Review Card */
   .pd-review-box {
-    max-width: 320px;
-    margin: 25px auto 0 auto; /* Centered */
+    background: #fff !important;
+    border: 1px solid #f0f0f0 !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    margin-top: 20px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+    text-align: left !important;
+    display: block !important;
+  }
+  .review-avatar {
+    background: #6B1A2A !important;
+    color: #fff !important;
+    margin-bottom: 10px !important;
+  }
+  .review-content p {
+    font-size: 14px !important;
+    color: #444 !important;
+    font-style: normal !important;
+    line-height: 1.4 !important;
   }
 }
   .review-avatar {
