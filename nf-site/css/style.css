@@ -2780,6 +2780,14 @@ button {
 }
 
 
+/* --- Table Utility --- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
 /* ===== SIZE CHART TABLE ===== */
 .size-chart {
   margin-top: 20px;
@@ -3229,10 +3237,12 @@ button {
     }
 
     .qty-ctrl {
-      flex: 2;
-      border-radius: 25px !important;
-      border: 1px solid #6B1A2A !important;
-      height: 48px;
+      width: 100% !important;
+      max-width: 450px !important;
+      margin-bottom: 0 !important;
+      border-radius: 8px !important;
+      border: 1px solid #ddd !important;
+      height: 52px;
     }
 
     .btn-icon-circle {
@@ -3248,14 +3258,27 @@ button {
 
     /* --- PREMIUM MOBILE PRODUCT ACTIONS --- */
     .pd-purchase-section {
-      padding: 0 10px !important; /* Minimal padding */
+      padding: 0 !important;
       display: flex !important;
       flex-direction: column !important;
-      gap: 15px !important;
+      gap: 12px !important;
       box-sizing: border-box !important;
       width: 100% !important;
-      align-items: center !important; /* Center all buttons */
+      align-items: flex-start !important; /* Align everything to the left (same as text) */
       overflow: hidden !important;
+    }
+
+    .pd-trust-stack {
+      width: 100% !important;
+      align-items: flex-start !important;
+      margin-top: 12px !important;
+    }
+
+    .trust-badge-mini {
+      width: 100% !important;
+      justify-content: flex-start !important;
+      padding: 10px 0 !important;
+      background: transparent !important;
     }
 
     .pd-action-row {
@@ -3270,16 +3293,18 @@ button {
     .btn-add-cart,
     .btn-buy-now,
     .btn-pay-advance {
-      display: block !important;
-      width: 85% !important; /* Take up 85% of container width */
-      max-width: 320px !important; /* Never exceed 320px for an elegant look */
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important; /* Stretch to full width of container */
+      max-width: 450px !important; /* Cap width for larger mobile screens/tablets */
       box-sizing: border-box !important;
-      margin: 0 auto 12px auto !important; /* Perfectly centered */
-      height: 54px !important;
-      min-height: 54px !important;
-      border-radius: 12px !important;
+      margin: 0 0 12px 0 !important; /* Align with text (left margin) */
+      height: 52px !important;
+      min-height: 52px !important;
+      border-radius: 8px !important;
       font-size: 14px !important;
-      font-weight: 600 !important;
+      font-weight: 700 !important;
       letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
       transition: transform 0.2s ease, box-shadow 0.2s ease !important;
@@ -3325,11 +3350,11 @@ button {
       border: 1px solid #f0f0f0 !important;
       padding: 15px !important;
       border-radius: 8px !important;
-      margin: 20px 16px 0 16px !important;
-      /* Good side margins */
+      margin: 20px 0 0 0 !important; /* Align with other content */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
       text-align: left !important;
       display: block !important;
+      width: 100% !important;
     }
 
     .review-avatar {
