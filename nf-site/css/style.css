@@ -3248,14 +3248,14 @@ button {
 
     /* --- PREMIUM MOBILE PRODUCT ACTIONS --- */
     .pd-purchase-section {
-      padding: 0 40px !important; /* Increased padding to make buttons horizontally smaller */
+      padding: 0 10px !important; /* Minimal padding */
       display: flex !important;
       flex-direction: column !important;
-      gap: 12px !important;
+      gap: 15px !important;
       box-sizing: border-box !important;
-      overflow: hidden !important;
       width: 100% !important;
-      align-items: center !important;
+      align-items: center !important; /* Center all buttons */
+      overflow: hidden !important;
     }
 
     .pd-action-row {
@@ -3271,20 +3271,20 @@ button {
     .btn-buy-now,
     .btn-pay-advance {
       display: block !important;
-      width: 100% !important;
+      width: 85% !important; /* Take up 85% of container width */
+      max-width: 320px !important; /* Never exceed 320px for an elegant look */
       box-sizing: border-box !important;
-      /* ← YE SABSE IMPORTANT HAI */
-      margin: 0 !important;
-      /* ← auto hata do, 0 karo */
+      margin: 0 auto 12px auto !important; /* Perfectly centered */
       height: 54px !important;
       min-height: 54px !important;
       border-radius: 12px !important;
-      font-size: 15px !important;
+      font-size: 14px !important;
       font-weight: 600 !important;
       letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
       transition: transform 0.2s ease, box-shadow 0.2s ease !important;
       border: none !important;
+      position: relative !important;
     }
 
     .btn-add-cart:active,
