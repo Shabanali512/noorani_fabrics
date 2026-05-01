@@ -3231,93 +3231,75 @@ button {
       background: #fff;
     }
 
-    /* --- ULTIMATE PREMIUM MOBILE UI (Shopify/Nazmira Style) --- */
-    .pd-name {
-      font-size: 24px !important;
-      font-weight: 800 !important;
-      color: #222 !important;
-      text-align: left !important;
-      margin: 10px 16px 0 16px !important; /* Good side margins */
-      line-height: 1.2 !important;
-    }
-
-    .pd-prices {
-      text-align: left !important;
-      margin: 5px 16px 15px 16px !important; /* Good side margins */
-      font-size: 20px !important;
-    }
-
-    .size-guide-row {
-      justify-content: flex-start !important;
-      margin: 0 16px 10px 16px !important; /* Good side margins */
-    }
-
-    .size-btns {
-      justify-content: flex-start !important;
-      padding: 0 16px !important; /* Good side margins */
-    }
-
-    .qty-wish-comp-row {
-      justify-content: flex-start !important;
-      gap: 10px !important;
-      margin-bottom: 15px !important;
-      padding: 0 16px !important; /* Good side margins */
+    /* --- PREMIUM MOBILE PRODUCT ACTIONS --- */
+    .pd-action-row {
+      flex-direction: column !important;
+      gap: 12px !important;
+      padding: 0 20px !important;
+      align-items: center !important;
     }
 
     .qty-ctrl {
-      flex: 1 !important;
-      max-width: 60px !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 auto 8px auto !important;
       height: 52px !important;
-      border-radius: 4px !important;
-      border: 1px solid #e0e0e0 !important;
-      background: #fdfdfd !important;
-    }
-
-    .btn-icon-circle {
-      width: 48px !important;
-      height: 48px !important;
-      border-radius: 4px !important;
-      /* Square-ish premium look */
-      border: 1px solid #e0e0e0 !important;
+      border-radius: 12px !important;
+      background: #f8f8f8 !important;
+      border: 1px solid #eee !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0 15px !important;
     }
 
     .btn-add-cart,
     .btn-buy-now,
-    .btn-pay-advance,
-    .btn-happy-customers {
-      width: auto !important; /* Let block/flex behavior handle the width naturally */
-      max-width: none !important;
-      border-radius: 6px !important;
+    .btn-pay-advance {
+      display: block !important;
+      width: calc(100% - 40px) !important;
+      margin: 0 auto 12px auto !important;
       height: 52px !important;
-      font-size: 14px !important;
-      font-weight: 700 !important;
+      min-height: 52px !important;
+      border-radius: 12px !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
-      letter-spacing: 1px !important;
-      margin: 8px 16px !important; /* 16px margin on both sides */
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
       border: none !important;
     }
 
+    .btn-add-cart:active,
+    .btn-buy-now:active,
+    .btn-pay-advance:active {
+      transform: scale(0.97) !important;
+    }
+
     .btn-add-cart {
-      background: #6B1A2A !important;
+      background: #1a1a1a !important;
       color: #fff !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
     }
 
     .btn-buy-now {
-      background: #333 !important;
-      color: #fff !important;
+      background: #fff !important;
+      color: #1a1a1a !important;
+      border: 2px solid #1a1a1a !important;
     }
 
     .btn-pay-advance {
-      background: #FF0066 !important;
-      height: 46px !important;
+      background: linear-gradient(135deg, #c8a96e, #a07840) !important;
+      color: #fff !important;
     }
 
-    .btn-happy-customers {
-      background: #00A8FF !important;
-      height: 46px !important;
+    /* Hide redundant elements on mobile if needed */
+    .btn-icon-circle {
+      display: none !important; /* Hide wishlist circle in the main row on mobile if preferred */
+    }
+
+    .pd-trust-stack {
+      margin-top: 12px !important;
     }
 
     .pd-review-box {
