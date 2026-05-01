@@ -2785,7 +2785,8 @@ button {
   margin-top: 20px;
   border: 1px solid var(--border);
   border-radius: 4px;
-  overflow: hidden
+  overflow: hidden;
+  background: #fff;
 }
 
 .size-chart-title {
@@ -2795,34 +2796,39 @@ button {
   background: var(--light-gray);
   border-bottom: 1px solid var(--border);
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .size-chart table {
   width: 100%;
-  border-collapse: collapse
+  min-width: 450px; /* Force minimum width to allow scrolling on mobile */
+  border-collapse: collapse;
 }
 
 .size-chart th {
-  padding: 8px 12px;
+  padding: 10px 8px;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .5px;
-  color: var(--text-3);
-  background: var(--off-white);
+  color: var(--text-2);
+  background: #f9f9f9;
   text-align: center;
-  border-bottom: 1px solid var(--border)
+  border: 1px solid #eee;
 }
 
 .size-chart td {
-  padding: 8px 12px;
+  padding: 10px 8px;
   text-align: center;
   font-size: 13px;
-  border-bottom: 1px solid var(--border)
-}
-
-.size-chart tr:last-child td {
-  border-bottom: none
+  border: 1px solid #eee;
+  color: #333;
 }
 
 /* ===== CONTACT ===== */
