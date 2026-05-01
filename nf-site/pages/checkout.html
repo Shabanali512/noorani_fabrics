@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-<div class="announce-bar">Get Free Shipping On Orders Above Rs. 7,999 !</div>
+<div class="announce-bar">Get Free Shipping On Orders Above Rs. 4,999 !</div>
 <nav class="navbar" id="navbar">
   <div class="nav-wrap container">
     <div class="nav-logo"><a href="../index.html"><img src="../images/logo.jpeg" alt="Noorani Fabrics"/></a></div>
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
   const items=Cart.get();
   const container=document.getElementById("checkout-content");
   if(!items.length){container.innerHTML=`<div style="grid-column:span 2;text-align:center;padding:60px 0"><h2 style="font-family:var(--font-h);color:var(--maroon);margin-bottom:16px">Cart khali hai!</h2><a href="shop.html" class="btn-maroon" style="display:inline-block;padding:12px 32px">Shop Now</a></div>`;return;}
-  const sub=Cart.total();const ship=sub>=7999?0:200;const total=sub+ship;
+  const sub=Cart.total();const ship=sub>=4999?0:200;const total=sub+ship;
 
   container.innerHTML=`
   <div class="checkout-form">
@@ -235,7 +235,7 @@ async function placeOrder(){
   
   const items = Cart.get();
   const sub = Cart.total();
-  const ship = sub >= 7999 ? 0 : 200;
+  const ship = sub >= 4999 ? 0 : 200;
   const total = sub + ship;
 
   // Set loading state
