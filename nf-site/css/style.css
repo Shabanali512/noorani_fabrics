@@ -3176,6 +3176,23 @@ button {
     transition: transform 0.3s ease;
   }
 
+  /* Compact Size Chart for Mobile */
+  .size-chart th {
+    padding: 6px 4px !important;
+    font-size: 9px !important;
+    white-space: nowrap;
+  }
+
+  .size-chart td {
+    padding: 6px 4px !important;
+    font-size: 11px !important;
+  }
+
+  .size-chart-title {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+
   /* --- MOBILE HEADER POLISH --- */
   @media (max-width: 768px) {
     .nav-wrap {
