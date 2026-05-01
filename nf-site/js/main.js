@@ -57,19 +57,27 @@ function showToast(msg,dur=3000){
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),dur);
 }
 
-/* ---- Scroll Reveal ---- */
+/* ---- Scroll Reveal (Singleton Observer for better perf) ---- */
+let globalRevealObserver;
 function initReveal(){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
-  },{threshold:0.07});
-  document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+  if (!globalRevealObserver) {
+    globalRevealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          globalRevealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+  }
+  document.querySelectorAll(".reveal:not(.visible)").forEach(el => globalRevealObserver.observe(el));
 }
 
 /* ---- Sticky Navbar ---- */
 function initNavbar(){
   const nav=document.getElementById("navbar");
   if(!nav)return;
-  window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>50));
+  window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>50), { passive: true });
 }
 
 /* ---- Hamburger ---- */
@@ -110,7 +118,7 @@ function initHamburger(){
     if (m && m.style.display === "flex" && !m.contains(e.target) && e.target !== btn) {
       m.style.display = "none";
     }
-  });
+  }, { passive: true });
 }
 
 /* ---- Search ---- */
@@ -119,17 +127,21 @@ function toggleSearch(){
   if(document.getElementById("search-overlay")?.classList.contains("open"))
     setTimeout(()=>document.getElementById("search-input")?.focus(),100);
 }
+let searchTimer;
 function liveSearch(q){
-  const el=document.getElementById("search-results");if(!el)return;
-  if(q.length<2){el.innerHTML="";return;}
-  const base=location.pathname.includes("/pages/")?"":"pages/";
-  const res=window.PRODUCTS.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())).slice(0,6);
-  el.innerHTML=res.length?res.map(p=>`
-    <div class="s-result-item" onclick="location.href='${base}product.html?id=${p.id}'">
-      <img src="${p.img}" alt="${p.name}"/>
-      <div><div style="font-weight:700;font-size:13px">${p.name}</div>
-      <div style="color:var(--maroon);font-weight:700;font-size:12px">${fmtPrice(p.price)}</div></div>
-    </div>`).join(""):`<p style="text-align:center;color:#999;padding:20px">No products found</p>`;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    const el=document.getElementById("search-results");if(!el)return;
+    if(q.length<2){el.innerHTML="";return;}
+    const base=location.pathname.includes("/pages/")?"":"pages/";
+    const res=window.PRODUCTS.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())).slice(0,6);
+    el.innerHTML=res.length?res.map(p=>`
+      <div class="s-result-item" onclick="location.href='${base}product.html?id=${p.id}'">
+        <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async"/>
+        <div><div style="font-weight:700;font-size:13px">${p.name}</div>
+        <div style="color:var(--maroon);font-weight:700;font-size:12px">${fmtPrice(p.price)}</div></div>
+      </div>`).join(""):`<p style="text-align:center;color:#999;padding:20px">No products found</p>`;
+  }, 200); // 200ms debounce
 }
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.getElementById("search-overlay")?.classList.remove("open");});
 
@@ -429,7 +441,10 @@ function initMouseZoom(containerSelector, imgSelector) {
 
 function animBadge(id){
   const e=document.getElementById(id);if(!e)return;
-  e.style.transform="scale(1.5)";setTimeout(()=>e.style.transform="",300);
+  requestAnimationFrame(() => {
+    e.style.transform="scale(1.5)";
+    setTimeout(()=>e.style.transform="",300);
+  });
 }
 
 /* ---- Init ---- */
