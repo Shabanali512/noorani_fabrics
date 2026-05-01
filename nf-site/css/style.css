@@ -3530,10 +3530,8 @@ button {
   .pd-gallery {
     flex-direction: column-reverse;
     gap: 12px;
-    width: 100vw !important;
-    /* Force edge-to-edge width */
-    margin-left: -10px !important;
-    /* Offset container padding (adjust if container padding is different) */
+    width: 100% !important; /* Change back to 100% to avoid overflow */
+    margin-left: 0 !important;
     overflow: hidden;
   }
 
@@ -3542,7 +3540,6 @@ button {
     margin: 0 !important;
     padding: 0 !important;
     aspect-ratio: 3/4;
-    /* Consistent premium aspect ratio */
     background: #f5f5f5;
   }
 
