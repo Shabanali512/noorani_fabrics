@@ -2418,120 +2418,169 @@ button {
   border-color: var(--maroon)
 }
 
-.qty-add-row {
+/* --- PROFESSIONAL PRODUCT ACTIONS --- */
+.pd-purchase-section {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.pd-action-row {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
-  align-items: center
 }
 
 .qty-ctrl {
   display: flex;
   align-items: center;
-  border: 1.5px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  height: 52px;
+  overflow: hidden;
+  background: #fff;
+  width: 110px;
+  flex-shrink: 0;
 }
 
 .qty-btn {
-  width: 38px;
-  height: 44px;
-  background: #f5f5f5;
+  width: 36px;
+  height: 100%;
   border: none;
-  font-size: 20px;
-  color: var(--text);
-  transition: background var(--tr)
+  background: #f8f8f8;
+  font-size: 18px;
+  color: #333;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 .qty-btn:hover {
-  background: var(--maroon);
-  color: #fff
+  background: #eee;
 }
 
 .qty-val {
-  width: 44px;
+  flex: 1;
   text-align: center;
-  font-size: 15px;
   font-weight: 700;
-  border: none;
-  outline: none;
-  border-color: var(--maroon);
-  background: #fff;
-  pointer-events: none
+  font-size: 15px;
 }
 
 .btn-add-cart {
   flex: 1;
+  height: 52px;
   background: var(--maroon);
   color: #fff;
   border: none;
-  padding: 13px;
-  font-size: 13px;
+  border-radius: 6px;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background var(--tr)
+  transition: 0.2s;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .btn-add-cart:hover {
-  background: var(--maroon-dark)
+  background: var(--maroon-dark);
+  transform: translateY(-1px);
+}
+
+.btn-icon-circle {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #ddd;
+  border-radius: 6px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-icon-circle:hover {
+  border-color: var(--maroon);
+  color: var(--maroon);
 }
 
 .btn-buy-now {
   width: 100%;
-  background: var(--maroon-dark);
+  height: 52px;
+  background: #000;
   color: #fff;
   border: none;
-  padding: 13px;
-  font-size: 13px;
+  border-radius: 6px;
   font-weight: 700;
+  font-size: 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  transition: background var(--tr)
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 .btn-buy-now:hover {
-  background: #300510
+  background: #222;
+  transform: translateY(-1px);
+}
+
+.pd-trust-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
 }
 
 .btn-pay-advance {
   width: 100%;
-  background: #E91E8C;
-  color: #fff;
-  border: none;
-  padding: 13px;
-  font-size: 13px;
-  font-weight: 700;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  transition: opacity var(--tr)
-}
-
-.btn-pay-advance:hover {
-  opacity: .9
-}
-
-.btn-happy-customers {
-  width: 100%;
-  background: var(--teal);
-  color: #fff;
-  border: none;
   padding: 12px;
+  background: #FFF0F0;
+  color: var(--maroon);
+  border: 1px dashed var(--maroon);
+  border-radius: 6px;
+  font-weight: 600;
   font-size: 13px;
-  font-weight: 700;
-  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px
+  cursor: pointer;
+  transition: 0.2s;
 }
+
+.btn-pay-advance:hover {
+  background: #FFE0E0;
+}
+
+.trust-badge-mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #555;
+  background: #f9f9f9;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.avatar-group {
+  display: flex;
+}
+
+.avatar-group img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-left: -8px;
+}
+
+.avatar-group img:first-child { margin-left: 0; }
 
 .btn-wishlist-share {
   display: flex;
@@ -3435,26 +3484,7 @@ button {
     font-size: 22px;
   }
 
-  .qty-add-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .qty-ctrl {
-    width: 100%;
-    height: 48px;
-  }
-
-  .btn-add-cart {
-    width: 100%;
-    height: 48px;
-  }
-
-  .btn-buy-now,
-  .btn-pay-advance {
-    height: 48px;
-    font-size: 12px;
-  }
+  /* Product actions handled by PROFESSIONAL PRODUCT ACTIONS */
 
   /* Cart Mobile Card Layout */
   .cart-table td {
