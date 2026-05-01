@@ -208,9 +208,8 @@ window.applyFilters=function(){
   setTimeout(()=>grid.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible")),60);
 }
 
-const dataPromise = fetchData();
 document.addEventListener("DOMContentLoaded", async ()=>{
-  await dataPromise;
+  await fetchData();
   const params=new URLSearchParams(location.search);
   const cat=params.get("cat");
   const sale=params.get("sale");

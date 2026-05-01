@@ -68,12 +68,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="http://127.0.0.1:8000"> <!-- API Preconnect -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
-  <!-- Preload Hero Images for Speed with High Priority -->
-  <link rel="preload" as="image" href="images/hero1.png" fetchpriority="high">
-  <link rel="preload" as="image" href="images/hero2.png" fetchpriority="high">
+  <!-- Preload Hero Images for Speed -->
+  <link rel="preload" as="image" href="images/hero1.png">
+  <link rel="preload" as="image" href="images/hero2.png">
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/homepage.css" />
@@ -533,16 +532,14 @@
   <script src="js/cart.js" defer></script>
   <script src="js/main.js" defer></script>
   <script>
-    // Start fetching data immediately instead of waiting for DOMContentLoaded
-    const dataPromise = fetchData();
-
     // Hero dots
     const dotsEl = document.getElementById("hero-dots");
     if (dotsEl) dotsEl.innerHTML = Array(32).fill('<span></span>').join('');
 
     document.addEventListener("DOMContentLoaded", async () => {
-      await dataPromise; // Wait for the fetch that started earlier
+      await fetchData();
 
+      // Trending grid - 8 products
       // Collections Circles (Dynamic Images)
       const ccGrid = document.getElementById("dynamic-collections-circles");
       if (ccGrid && window.PRODUCTS.length > 0) {
@@ -554,23 +551,23 @@
 
         ccGrid.innerHTML = `
             <a href="pages/shop.html?new=1" class="circle-item reveal" style="--delay:0s">
-              <div class="circle-img"><img src="${newProd.img}" alt="New Arrivals" style="object-position: top;" loading="lazy" decoding="async"/></div>
+              <div class="circle-img"><img src="${newProd.img}" alt="New Arrivals" style="object-position: top;"/></div>
               <h3>New Arrivals</h3>
             </a>
             <a href="pages/shop.html?sale=1" class="circle-item reveal" style="--delay:.08s">
-              <div class="circle-img"><img src="${saleProd.img}" alt="Sale" style="object-position: top;" loading="lazy" decoding="async"/></div>
+              <div class="circle-img"><img src="${saleProd.img}" alt="Sale" style="object-position: top;"/></div>
               <h3>Sale</h3>
             </a>
             <a href="pages/shop.html?cat=embroidery" class="circle-item reveal" style="--delay:.16s">
-              <div class="circle-img"><img src="${embProd.img}" alt="Embroidery" style="object-position: top;" loading="lazy" decoding="async"/></div>
+              <div class="circle-img"><img src="${embProd.img}" alt="Embroidery" style="object-position: top;"/></div>
               <h3>Embroidery</h3>
             </a>
             <a href="pages/shop.html?cat=3piece" class="circle-item reveal" style="--delay:.24s">
-              <div class="circle-img"><img src="${threePcProd.img}" alt="3Pc Collection" style="object-position: top;" loading="lazy" decoding="async"/></div>
+              <div class="circle-img"><img src="${threePcProd.img}" alt="3Pc Collection" style="object-position: top;"/></div>
               <h3>3Pc Collection</h3>
             </a>
             <a href="pages/shop.html" class="circle-item reveal" style="--delay:.32s">
-              <div class="circle-img"><img src="${allProd.img}" alt="All Products" style="object-position: top;" loading="lazy" decoding="async"/></div>
+              <div class="circle-img"><img src="${allProd.img}" alt="All Products" style="object-position: top;"/></div>
               <h3>All Products</h3>
             </a>
           `;
@@ -614,7 +611,7 @@
       if (lds) {
         let featured = window.PRODUCTS.filter(p => p.is_featured);
         if (featured.length === 0) featured = window.PRODUCTS.slice(0, 6); // Fallback to first 6 if none featured
-        lds.innerHTML = featured.slice(0, 6).map(p => `<div class="photo-strip-item" style="cursor:pointer" onclick="location.href='pages/product.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async" /></div>`).join("");
+        lds.innerHTML = featured.slice(0, 6).map(p => `<div class="photo-strip-item" style="cursor:pointer" onclick="location.href='pages/product.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" /></div>`).join("");
       }
 
       initNavbar();

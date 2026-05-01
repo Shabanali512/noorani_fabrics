@@ -99,10 +99,9 @@
 <script src="../js/cart.js" defer></script>
 <script src="../js/main.js" defer></script>
 <script>
-const dataPromise = fetchData();
 let selSize="s", qty=1, pdId=null;
 document.addEventListener("DOMContentLoaded", async ()=>{
-  await dataPromise;
+  await fetchData();
   const id=parseInt(new URLSearchParams(location.search).get("id"));
   const p=window.PRODUCTS.find(x=>x.id===id)||window.PRODUCTS[0];
   if(!p) return;
@@ -130,10 +129,10 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     <div class="product-detail-layout">
       <div class="pd-gallery">
         <div class="pd-thumbs">
-          ${thumbImgs.map((img,i)=>`<img class="pd-thumb ${i===0?'active':''}" src="${img}" alt="thumb ${i}" onclick="switchImg('${img}',this)" loading="lazy" decoding="async"/>`).join("")}
+          ${thumbImgs.map((img,i)=>`<img class="pd-thumb ${i===0?'active':''}" src="${img}" alt="thumb ${i}" onclick="switchImg('${img}',this)"/>`).join("")}
         </div>
         <div class="pd-main-wrap" style="flex:1">
-          <img class="pd-main-img" id="pd-main-img" src="${p.img}" alt="${p.name}" fetchpriority="high" decoding="async"/>
+          <img class="pd-main-img" id="pd-main-img" src="${p.img}" alt="${p.name}"/>
           ${disc>0?`<span class="pd-discount-badge">-${disc}%</span>`:""}
           <button class="pd-zoom-btn" onclick="zoomImg()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>

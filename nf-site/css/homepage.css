@@ -13,12 +13,6 @@
   padding: 0;
 }
 
-/* FAQ Section - Optimization */
-.faq-sec {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 500px;
-}
-
 /* Decorative outline boxes - exactly like nazmira */
 .hero-deco {
   position: absolute;
@@ -213,11 +207,10 @@
 .qv-img-side {
   position: relative;
   background: var(--light-gray);
-  aspect-ratio: 3/4;
 }
 .qv-img-side img {
   width: 100%;
-  height: 100%;
+  height: 480px;
   object-fit: cover;
   object-position: center top;
   display: block;
@@ -442,9 +435,3 @@
   .get-5off { font-size: 12px; padding: 12px; }
 }
 
-
-/* Footer - Optimization */
-.footer {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 400px;
-}
