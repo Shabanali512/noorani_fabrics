@@ -1,20 +1,51 @@
 /* NOORANI FABRICS — main.js v2 */
-window.API_BASE = (location.protocol === "file:" || location.port === "5500") ? "http://127.0.0.1:8000/api/" : "/api/";
+window.API_BASE = (location.protocol === "file:" || location.port === "5500" || location.port === "3000") ? "http://127.0.0.1:8000/api/" : "/api/";
 
 window.PRODUCTS = [];
 window.CATEGORIES = [];
 
+/* ---- Utility Functions (Always available) ---- */
+window.fmtPrice = window.fmtPrice || function(n) {
+  if (n === null || n === undefined) return "Rs. 0.00";
+  return "Rs. " + parseInt(n).toLocaleString() + ".00";
+};
+window.discPct = window.discPct || function(p, o) {
+  return o ? Math.round(((o - p) / o) * 100) : 0;
+};
+window.getCat = window.getCat || function(c) {
+  return {
+    "3piece": "3Pc Collection",
+    "2piece": "2Pc Collection",
+    "embroidery": "Embroidery",
+    "casual": "Casual Wear",
+    "new": "New Arrivals"
+  } [c] || c;
+};
+
 async function fetchData() {
   try {
     const resP = await fetch(window.API_BASE + "products/");
-    window.PRODUCTS = await resP.json();
+    if (!resP.ok) throw new Error("Products API failed");
+    const dataP = await resP.json();
+    if (dataP && dataP.length > 0) {
+      window.PRODUCTS = dataP;
+    } else {
+      throw new Error("Empty products data");
+    }
+
     const resC = await fetch(window.API_BASE + "categories/");
-    window.CATEGORIES = await resC.json();
+    if (resC.ok) {
+      const dataC = await resC.json();
+      window.CATEGORIES = dataC;
+    }
+    console.log("Data loaded from API");
     return true;
   } catch (err) {
-    console.error("Failed to fetch data:", err);
-    // Fallback if API is not running
-    if (typeof PRODUCTS_FALLBACK !== 'undefined') window.PRODUCTS = PRODUCTS_FALLBACK;
+    console.warn("API Fetch failed, using fallback:", err);
+    if (typeof PRODUCTS_FALLBACK !== 'undefined' && PRODUCTS_FALLBACK.length > 0) {
+      window.PRODUCTS = PRODUCTS_FALLBACK;
+      return true;
+    }
     return false;
   }
 }
@@ -154,8 +185,8 @@ function renderProductCard(p, basePath=""){
   <div class="product-card reveal" data-id="${p.id}">
     <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
     <div class="product-card-img">
-      <img class="img-front" src="${p.img}" alt="${p.name}" loading="lazy"/>
-      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" loading="lazy"/>
+      <img class="img-front" src="${p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
+      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
       ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
       <button class="qv-trigger" onclick="event.stopPropagation();openQuickView(${p.id})">Quick View</button>
       <div class="quick-shop-wrap">
@@ -183,8 +214,8 @@ function renderSaleCard(p, basePath=""){
   <div class="sale-card reveal">
     <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
     <div class="sale-card-img">
-      <img class="img-front" src="${p.img}" alt="${p.name}" loading="lazy"/>
-      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" loading="lazy"/>
+      <img class="img-front" src="${p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
+      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
       ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
     </div>
     <div class="stock-bar-wrap">

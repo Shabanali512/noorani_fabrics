@@ -103,46 +103,105 @@ document.addEventListener("DOMContentLoaded", async ()=>{
   const sub=Cart.total();const ship=sub>=4999?0:200;const total=sub+ship;
 
   container.innerHTML=`
-  <div>
+  <div class="checkout-form">
     <div class="checkout-card">
-      <h3>Delivery Information</h3>
-      <div class="form-row-2"><div class="form-group"><label>Full Name *</label><input type="text" id="c-name" placeholder="Ayesha Khan"/></div><div class="form-group"><label>Phone *</label><input type="tel" id="c-phone" placeholder="+92 300 0000000"/></div></div>
-      <div class="form-group"><label>Email</label><input type="email" id="c-email" placeholder="email@example.com"/></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:12px">
+        <h3 style="margin-bottom:0;border:none;padding:0">Delivery Information</h3>
+        <span style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px">Step 1 of 2</span>
+      </div>
       <div class="form-row-2">
-        <div class="form-group"><label>City *</label><select id="c-city"><option value="">Select City</option>${["Lahore","Karachi","Islamabad","Rawalpindi","Faisalabad","Multan","Peshawar","Quetta","Gujranwala","Sialkot"].map(c=>`<option>${c}</option>`).join("")}</select></div>
-        <div class="form-group"><label>Address *</label><input type="text" id="c-addr" placeholder="Street address"/></div>
+        <div class="form-group"><label>Full Name *</label><input type="text" id="c-name" placeholder="Ayesha Khan" required/></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="c-phone" placeholder="0300 1234567" required/></div>
       </div>
-      <div class="form-group"><label>Note (Optional)</label><textarea id="c-note" placeholder="Any special instructions..."></textarea></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="c-email" placeholder="ayesha@example.com"/></div>
+      <div class="form-row-2">
+        <div class="form-group"><label>City *</label>
+          <select id="c-city" required>
+            <option value="">Select City</option>
+            ${["Lahore","Karachi","Islamabad","Rawalpindi","Faisalabad","Multan","Peshawar","Quetta","Gujranwala","Sialkot","Other"].map(c=>`<option>${c}</option>`).join("")}
+          </select>
+        </div>
+        <div class="form-group"><label>Full Address *</label><input type="text" id="c-addr" placeholder="House #, Street, Area" required/></div>
+      </div>
+      <div class="form-group"><label>Order Note (Optional)</label><textarea id="c-note" rows="2" placeholder="Any special instructions for delivery..."></textarea></div>
     </div>
-  <div class="checkout-card">
-    <h3>Payment Method</h3>
-    <p style="font-size:12px;color:var(--text-3);margin-bottom:12px">Please select your preferred payment method:</p>
-    ${[
-      {id:"Cash on Delivery",label:"💵 Cash on Delivery",badge:"Recommended"},
-      {id:"JazzCash",label:"📱 JazzCash (Manual)"},
-      {id:"Easypaisa",label:"🟢 Easypaisa (Manual)"},
-      {id:"Bank Transfer",label:"🏦 Bank Transfer"}
-    ].map(pm=>`
-    <div class="pay-option ${pm.id==='Cash on Delivery'?'active':''}" onclick="selectPay('${pm.id}',this)">
-      <div style="display:flex;align-items:center;gap:10px;flex:1">
-        <input type="radio" name="pay" value="${pm.id}" ${pm.id==='Cash on Delivery'?'checked':''}/> 
-        <span>${pm.label}</span>
+
+    <div class="checkout-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:12px">
+        <h3 style="margin-bottom:0;border:none;padding:0">Payment Method</h3>
+        <span style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px">Step 2 of 2</span>
       </div>
-      ${pm.badge?`<span style="font-size:10px;background:var(--maroon);color:#fff;padding:2px 8px;border-radius:10px;font-weight:700">${pm.badge}</span>`:''}
-    </div>`).join("")}
+      <p style="font-size:13px;color:var(--text-2);margin-bottom:16px">Choose how you'd like to pay for your order:</p>
+      
+      <div class="pay-options-list">
+        ${[
+          {id:"Cash on Delivery",label:"Cash on Delivery",icon:"💵",badge:"Recommended"},
+          {id:"JazzCash",label:"JazzCash (Manual)",icon:"📱"},
+          {id:"Easypaisa",label:"Easypaisa (Manual)",icon:"🟢"},
+          {id:"Bank Transfer",label:"Bank Transfer",icon:"🏦"}
+        ].map(pm=>`
+        <div class="pay-option ${pm.id==='Cash on Delivery'?'active':''}" onclick="selectPay('${pm.id}',this)">
+          <div style="display:flex;align-items:center;gap:12px;flex:1">
+            <input type="radio" name="pay" value="${pm.id}" ${pm.id==='Cash on Delivery'?'checked':''}/> 
+            <span style="font-size:20px">${pm.icon}</span>
+            <span style="font-weight:600">${pm.label}</span>
+          </div>
+          ${pm.badge?`<span style="font-size:10px;background:var(--maroon);color:#fff;padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:0.5px">${pm.badge}</span>`:''}
+        </div>`).join("")}
+      </div>
+      
+      <div style="margin-top:20px;padding:15px;background:#f9f9f9;border-radius:6px;font-size:12px;color:var(--text-2);line-height:1.5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:-2px;margin-right:5px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Your personal data will be used to process your order and for other purposes described in our <a href="policies/privacy.html" style="text-decoration:underline;color:var(--maroon)">privacy policy</a>.
+      </div>
+    </div>
   </div>
-</div>
-<div>
-  <div class="cart-summary-box">
-    <h3>Order Summary</h3>
-    ${items.map(i=>{const p=window.PRODUCTS.find(x=>x.id===i.id);if(!p)return"";return`<div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)"><img src="${p.img}" style="width:52px;height:64px;object-fit:cover;border-radius:3px"/><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div style="font-size:11px;color:var(--text-3)">Size: ${i.size.toUpperCase()} × ${i.qty}</div></div><div style="font-weight:700;font-size:13px;color:var(--maroon);white-space:nowrap">${fmtPrice(p.price*i.qty)}</div></div>`;}).join("")}
-    <div class="summary-row" style="margin-top:8px"><span>Subtotal</span><span>${fmtPrice(sub)}</span></div>
-    <div class="summary-row"><span>Shipping</span><span>${ship===0?'<span style="color:green">FREE</span>':fmtPrice(ship)}</span></div>
-    <div class="summary-row"><span>Total</span><span>${fmtPrice(total)}</span></div>
-    <button class="btn-maroon" onclick="placeOrder()" style="margin-top:16px">Place Order — ${fmtPrice(total)}</button>
-    <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--text-3)">🔒 Secure payment • 7-day returns</div>
-  </div>
-</div>`;
+
+  <div class="checkout-summary" style="position:sticky;top:100px">
+    <div class="checkout-card" style="padding:0;overflow:hidden">
+      <h3 style="padding:20px 24px;margin-bottom:0;background:#fcfcfc">Order Summary</h3>
+      <div style="padding:0 24px">
+        <div class="checkout-items-list" style="max-height:300px;overflow-y:auto;padding:10px 0">
+          ${items.map(i=>{
+            const p=window.PRODUCTS.find(x=>x.id===i.id);
+            if(!p)return"";
+            return `
+            <div style="display:flex;gap:15px;padding:12px 0;border-bottom:1px solid #f0f0f0">
+              <div style="position:relative">
+                <img src="${p.img}" style="width:60px;height:75px;object-fit:cover;border-radius:4px;border:1px solid #eee"/>
+                <span style="position:absolute;top:-8px;right:-8px;background:var(--text-2);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">${i.qty}</span>
+              </div>
+              <div style="flex:1;min-width:0;padding-top:4px">
+                <div style="font-size:13px;font-weight:700;text-transform:uppercase;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px">${p.name}</div>
+                <div style="font-size:11px;color:var(--text-3)">Size: ${i.size.toUpperCase()}</div>
+              </div>
+              <div style="font-weight:700;font-size:14px;color:var(--maroon);padding-top:4px">${fmtPrice(p.price*i.qty)}</div>
+            </div>`;
+          }).join("")}
+        </div>
+        
+        <div style="padding:20px 0">
+          <div class="summary-row" style="margin-bottom:10px"><span>Subtotal</span><span style="font-weight:600">${fmtPrice(sub)}</span></div>
+          <div class="summary-row" style="margin-bottom:10px"><span>Shipping</span><span>${ship===0?'<span style="color:#27ae60;font-weight:700">FREE</span>':fmtPrice(ship)}</span></div>
+          <div style="height:1px;background:#eee;margin:15px 0"></div>
+          <div class="summary-row" style="font-size:20px;font-weight:800;color:var(--text)"><span>Total</span><span>${fmtPrice(total)}</span></div>
+        </div>
+      </div>
+      
+      <div style="padding:0 24px 24px">
+        <button class="btn-maroon checkout-btn" id="place-order-btn" onclick="placeOrder()" style="width:100%;height:54px;font-size:15px;letter-spacing:1px;box-shadow:0 10px 20px rgba(107,26,42,0.15)">
+          PLACE ORDER NOW
+        </button>
+        <div style="text-align:center;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:15px">
+          <img src="../images/trust.png" alt="Trust" style="height:24px;opacity:0.6;filter:grayscale(1)" onerror="this.style.display='none'"/>
+          <span style="font-size:11px;color:var(--text-3);display:flex;align-items:center;gap:5px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            SSL Secured Checkout
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>`;
 });
 
 function selectPay(id,el){
@@ -153,6 +212,9 @@ function selectPay(id,el){
 }
 
 async function placeOrder(){
+  const btn = document.getElementById("place-order-btn");
+  if(btn.disabled) return;
+
   const name=document.getElementById("c-name")?.value.trim();
   const phone=document.getElementById("c-phone")?.value.trim();
   const email=document.getElementById("c-email")?.value.trim();
@@ -160,12 +222,26 @@ async function placeOrder(){
   const addr=document.getElementById("c-addr")?.value.trim();
   const note=document.getElementById("c-note")?.value.trim();
   
-  if(!name||!phone||!city||!addr){showToast("Sab zaruri fields bharein (naam, phone, city, address)");return;}
+  if(!name||!phone||!city||!addr){
+    showToast("Please fill all required fields: Name, Phone, City, and Address.");
+    return;
+  }
+
+  // Simple phone validation (Pakistan format)
+  if(!/^((\+92)|(0092))?3[0-9]{9}$|^03[0-9]{9}$/.test(phone.replace(/[\s-]/g, ""))) {
+    showToast("Please enter a valid Pakistani phone number.");
+    return;
+  }
   
   const items = Cart.get();
   const sub = Cart.total();
   const ship = sub >= 4999 ? 0 : 200;
   const total = sub + ship;
+
+  // Set loading state
+  const originalBtnText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<svg class="spinner" viewBox="0 0 50 50" style="width:20px;height:20px;display:inline-block;vertical-align:middle;margin-right:10px;animation:spin 1s linear infinite"><circle cx="25" cy="25" r="20" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="31.4, 31.4" stroke-linecap="round"></circle></svg> PROCESSING...`;
 
   try {
     const response = await fetch(window.API_BASE + "orders/", {
@@ -199,24 +275,29 @@ async function placeOrder(){
       const waLink = `https://wa.me/923084085453?text=${waText}`;
 
       document.getElementById("checkout-content").innerHTML=`
-        <div style="grid-column:span 2;text-align:center;padding:60px 0">
-          <div style="width:70px;height:70px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <h2 style="font-family:var(--font-h);font-size:36px;color:var(--maroon);margin-bottom:12px">Order Placed Successfully!</h2>
-          <p style="color:var(--text-2);margin-bottom:6px">Order ID: <strong style="color:var(--maroon)">${orderId}</strong></p>
-          <p style="color:var(--text-3);margin-bottom:28px;font-size:13px">Hum 24 ghante mein aapko contact karenge. Shukriya!</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <a href="${waLink}" target="_blank" class="btn-maroon" style="display:inline-block;padding:12px 28px;background:#25D366;border-color:#25D366"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Confirm via WhatsApp</a>
-            <a href="../index.html" class="btn-maroon" style="display:inline-block;padding:12px 28px">Home</a>
-            <a href="shop.html" style="display:inline-block;padding:12px 28px;border:2px solid var(--maroon);color:var(--maroon);font-weight:700;font-size:13px;letter-spacing:1px">Shop More</a>
+        <div style="grid-column:span 2;text-align:center;padding:80px 0;animation: fadeInUp 0.6s ease">
+          <div style="width:80px;height:80px;background:#27ae60;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 30px;box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h2 style="font-family:var(--font-h);font-size:42px;color:var(--maroon);margin-bottom:15px">Thank You, ${name.split(' ')[0]}!</h2>
+          <p style="font-size:18px;color:var(--text-2);margin-bottom:10px">Your order <strong style="color:var(--maroon)">${orderId}</strong> has been received.</p>
+          <p style="color:var(--text-3);margin-bottom:40px;font-size:14px;max-width:500px;margin-left:auto;margin-right:auto">We've sent a confirmation. Please confirm your order on WhatsApp for faster processing.</p>
+          <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap">
+            <a href="${waLink}" target="_blank" class="btn-maroon" style="display:inline-flex;align-items:center;padding:15px 35px;background:#25D366;border-color:#25D366;font-size:14px;border-radius:30px"><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;margin-right:10px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg> CONFIRM ON WHATSAPP</a>
+            <a href="../index.html" class="btn-maroon" style="display:inline-flex;align-items:center;padding:15px 35px;font-size:14px;border-radius:30px;background:transparent;border:2px solid var(--maroon);color:var(--maroon)">GO TO HOME</a>
           </div>
-        </div>`;
+        </div>
+        <style>
+          @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+          @keyframes spin { to { transform: rotate(360deg); } }
+        </style>`;
         
       // Also automatically attempt to open WhatsApp
-      setTimeout(() => { window.open(waLink, '_blank'); }, 1500);
+      setTimeout(() => { window.open(waLink, '_blank'); }, 2000);
     } else {
+      btn.disabled = false; btn.innerHTML = originalBtnText;
       showToast("Order place karne mein masla hua. Dobara koshish karein.");
     }
   } catch (err) {
+    btn.disabled = false; btn.innerHTML = originalBtnText;
     console.error("Order error:", err);
     showToast("Network error. Please try again.");
   }

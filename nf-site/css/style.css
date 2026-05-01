@@ -101,7 +101,11 @@ button {
 }
 
 .navbar.scrolled {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: rgba(107, 26, 42, 0.1);
 }
 
 .nav-wrap {
@@ -291,7 +295,13 @@ button {
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: -2px;
-  margin-bottom: 24px
+  margin-bottom: 24px;
+  animation: heroTextReveal 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroTextReveal {
+  from { opacity: 0; transform: translateY(40px) skewY(2deg); }
+  to { opacity: 1; transform: translateY(0) skewY(0); }
 }
 
 .hero-sub {
@@ -522,7 +532,19 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  min-height: 400px
+  min-height: 400px;
+  transition: all 0.4s ease;
+}
+
+/* Smooth reveal animation for grid items */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .product-card {
@@ -696,6 +718,38 @@ button {
 
 .qv-overlay.open .qv-modal {
   transform: scale(1) translateY(0);
+}
+
+/* Quick View Mobile Support */
+@media (max-width: 768px) {
+  .qv-modal {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  .qv-body {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .qv-img-side {
+    height: 450px;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+  .qv-info {
+    padding: 20px 16px 40px;
+  }
+  .qv-close {
+    top: 15px;
+    right: 15px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
 }
 
 /* Mobile Horizontal Swiping (Scroll Snap) */
@@ -1446,6 +1500,24 @@ button {
 
 .photo-strip-item:hover img {
   transform: scale(1.06)
+}
+
+/* Premium Card Shine Effect */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  z-index: 6;
+  pointer-events: none;
+}
+.product-card:hover::after {
+  left: 125%;
 }
 
 /* ===== FEATURES BAR ===== */

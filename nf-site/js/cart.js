@@ -35,7 +35,20 @@ function removeCartItem(id,size){Cart.remove(id,size);renderCart()}
 function renderCart(){
   const container=document.getElementById("cart-content");
   if(!container) return;
+  
   const items=Cart.get();
+  
+  // If products are still loading, wait a bit or show loading
+  if (window.PRODUCTS.length === 0 && items.length > 0) {
+    container.innerHTML = `<div style="text-align:center;padding:100px 0;color:var(--text-3)">
+      <div class="loader-spinner" style="width:40px;height:40px;border:3px solid #eee;border-top-color:var(--maroon);border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite"></div>
+      <p>Loading your premium selection...</p>
+    </div>
+    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>`;
+    setTimeout(renderCart, 500);
+    return;
+  }
+
   if(!items.length){
     container.innerHTML=`<div class="cart-empty-state">
       <div class="cart-empty-icon">🛒</div>
