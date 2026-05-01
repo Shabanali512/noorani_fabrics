@@ -3515,26 +3515,41 @@ button {
   /* Product detail mobile */
   .pd-gallery {
     flex-direction: column-reverse;
-    gap: 8px;
-  }
-
-  .pd-thumbs {
-    flex-direction: row;
+    gap: 12px;
     width: 100%;
-    overflow-x: auto;
-    gap: 6px;
-    padding-bottom: 8px;
-    scrollbar-width: none;
+    overflow: hidden; /* Prevent horizontal scroll */
   }
 
-  .pd-thumb {
-    width: 65px;
-    height: 80px;
-    flex-shrink: 0;
+  .pd-main-wrap {
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .pd-main-img {
-    height: 380px;
+    width: 100%;
+    height: auto;
+    max-height: 70vh; /* Don't let it be too tall */
+    object-fit: contain; /* Ensure full image is visible */
+    background: #fdfdfd;
+  }
+
+  .pd-thumbs {
+    flex-direction: row !important;
+    width: 100%;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 5px 0 10px 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pd-thumb {
+    width: 70px !important;
+    height: 90px !important;
+    flex-shrink: 0;
+    border-radius: 4px;
+    object-fit: cover;
   }
 
   .pd-name {
