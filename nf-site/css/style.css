@@ -3233,47 +3233,17 @@ button {
 
     /* --- PREMIUM MOBILE PRODUCT ACTIONS --- */
     .pd-purchase-section {
-      padding: 0 20px !important;
+      padding: 0 20px !important; /* Global horizontal margin for all actions */
       display: flex !important;
       flex-direction: column !important;
-      gap: 15px !important;
-      align-items: center !important; /* Center all items inside */
-      text-align: center !important;
+      gap: 12px !important;
     }
 
-    .pd-info-col {
-      text-align: center !important;
-      padding: 0 15px !important;
-    }
-
-    .pd-name {
-      text-align: center !important;
-      margin: 15px 0 10px 0 !important;
-      font-size: 24px !important;
-    }
-
-    .pd-prices {
-      justify-content: center !important;
-      text-align: center !important;
-      margin-bottom: 15px !important;
-    }
-
-    .pd-shipping, .pd-offer {
-      text-align: center !important;
+    .pd-action-row {
+      flex-direction: column !important;
+      gap: 12px !important;
+      padding: 0 !important; /* Remove individual padding */
       width: 100% !important;
-    }
-
-    .size-label {
-      text-align: center !important;
-      justify-content: center !important;
-      display: flex !important;
-      gap: 10px !important;
-      margin-bottom: 12px !important;
-    }
-
-    .size-btns {
-      justify-content: center !important;
-      margin-bottom: 20px !important;
     }
 
     .qty-ctrl {
@@ -3337,42 +3307,6 @@ button {
 
     .pd-trust-stack {
       margin-top: 12px !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      width: 100% !important;
-    }
-
-    .trust-badge-mini {
-      justify-content: center !important;
-      margin-top: 10px !important;
-    }
-
-    /* Size Chart Table Responsiveness */
-    .pd-tab-content table {
-      display: block !important;
-      width: 100% !important;
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch !important;
-      white-space: nowrap !important;
-      border-collapse: collapse !important;
-    }
-    
-    .pd-review-box {
-      margin: 20px 0 !important;
-      text-align: center !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-    }
-    
-    .review-content {
-      text-align: center !important;
-    }
-    
-    .review-stars {
-      justify-content: center !important;
-      display: flex !important;
     }
 
     .pd-review-box {
