@@ -1,6 +1,6 @@
 /* Shared navbar HTML - injected by pages */
 const NAV_HTML = `
-<div class="announce-bar">Get Free Shipping On Orders Above Rs. 4,999 !</div>
+<div class="announce-bar">Get Free Shipping On Orders Above Rs. 7,999 !</div>
 <nav class="navbar" id="navbar">
   <div class="nav-wrap container">
     <div class="nav-logo">
