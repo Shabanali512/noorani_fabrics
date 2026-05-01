@@ -3327,24 +3327,16 @@ button {
       padding: 15px !important;
       border-radius: 8px !important;
       margin: 20px 16px 0 16px !important;
+      /* Good side margins */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
-      display: flex !important;
-      align-items: flex-start !important;
-      gap: 12px !important;
+      text-align: left !important;
+      display: block !important;
     }
 
     .review-avatar {
-      width: 44px !important;
-      height: 44px !important;
       background: #6B1A2A !important;
       color: #fff !important;
-      flex-shrink: 0 !important;
-      border-radius: 50% !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      font-size: 14px !important;
-      font-weight: 700 !important;
+      margin-bottom: 10px !important;
     }
 
     .review-content p {
