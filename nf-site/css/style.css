@@ -3248,16 +3248,14 @@ button {
 
     /* --- PREMIUM MOBILE PRODUCT ACTIONS --- */
     .pd-purchase-section {
-      padding: 0 20px !important;
+      padding: 0 40px !important; /* Increased padding to make buttons horizontally smaller */
       display: flex !important;
       flex-direction: column !important;
       gap: 12px !important;
       box-sizing: border-box !important;
-      /* ← YE ADD KARO */
       overflow: hidden !important;
-      /* ← YE BHI ADD KARO */
       width: 100% !important;
-      /* ← AUR YE */
+      align-items: center !important;
     }
 
     .pd-action-row {
