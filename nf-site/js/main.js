@@ -286,7 +286,7 @@ function openQuickView(id){
 
       <div style="font-size:13px;color:var(--maroon);line-height:1.6;margin-bottom:5px">
         Order Any <strong>2 Dresses</strong> And Enjoy <strong>Free Home Delivery</strong><br>
-        Get <strong>Free Shipping</strong> On Orders Above <strong>Rs. 4,999</strong>
+        Get <strong>Free Shipping</strong> On Orders Above <strong>Rs. 7,999</strong>
       </div>
 
       <div class="qv-selection-area">
