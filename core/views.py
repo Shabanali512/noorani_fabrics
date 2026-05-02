@@ -5,8 +5,7 @@ from .models import Product, Category, Order
 import json
 
 def product_list(request):
-    # Optimized with select_related to fetch category data in a single query
-    products = Product.objects.select_related('category').all().order_by('-created_at')
+    products = Product.objects.all().order_by('-created_at')
     data = []
     for p in products:
         def get_img_url(img_field):
@@ -21,7 +20,7 @@ def product_list(request):
         data.append({
             "id": p.id,
             "name": p.name,
-            "cat": p.category.slug, # Now this won't trigger a new DB query
+            "cat": p.category.slug,
             "price": float(p.price),
             "oldPrice": float(p.old_price) if p.old_price else None,
             "img": get_img_url(p.img),
