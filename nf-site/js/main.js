@@ -29,6 +29,7 @@ async function fetchData() {
     const dataP = await resP.json();
     if (dataP && dataP.length > 0) {
       window.PRODUCTS = dataP;
+      console.log("Products loaded from API");
     } else {
       throw new Error("Empty products data");
     }
@@ -38,12 +39,12 @@ async function fetchData() {
       const dataC = await resC.json();
       window.CATEGORIES = dataC;
     }
-    console.log("Data loaded from API");
     return true;
   } catch (err) {
     console.warn("API Fetch failed, using fallback:", err);
-    if (typeof PRODUCTS_FALLBACK !== 'undefined' && PRODUCTS_FALLBACK.length > 0) {
+    if (typeof PRODUCTS_FALLBACK !== 'undefined' && Array.isArray(PRODUCTS_FALLBACK) && PRODUCTS_FALLBACK.length > 0) {
       window.PRODUCTS = PRODUCTS_FALLBACK;
+      console.log("Products loaded from Fallback");
       return true;
     }
     return false;
@@ -180,54 +181,66 @@ function subscribeNewsletter(e){
    PRODUCT CARD RENDERER (with Quick View)
 ================================================================ */
 function renderProductCard(p, basePath=""){
-  const disc=discPct(p.price,p.oldPrice);
-  return `
-  <div class="product-card reveal" data-id="${p.id}">
-    <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
-    <div class="product-card-img">
-      <img class="img-front" src="${p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
-      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
-      ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
-      <button class="qv-trigger" onclick="event.stopPropagation();openQuickView(${p.id})">Quick View</button>
-      <div class="quick-shop-wrap">
-        <button class="quick-shop-btn" onclick="event.stopPropagation();Cart.add(${p.id},'m')">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          QUICK SHOP
-        </button>
+  try {
+    if(!p) return "";
+    const disc=discPct(p.price,p.oldPrice);
+    return `
+    <div class="product-card reveal" data-id="${p.id}">
+      <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
+      <div class="product-card-img">
+        <img class="img-front" src="${p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
+        <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
+        ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
+        <button class="qv-trigger" onclick="event.stopPropagation();openQuickView(${p.id})">Quick View</button>
+        <div class="quick-shop-wrap">
+          <button class="quick-shop-btn" onclick="event.stopPropagation();Cart.add(${p.id},'m')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            QUICK SHOP
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="product-info">
-      <div class="product-name">${p.name}</div>
-      <div class="product-prices">
-        <span class="price-orig">${fmtPrice(p.oldPrice)}</span>
-        <span class="price-sale">${fmtPrice(p.price)}</span>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-prices">
+          <span class="price-orig">${fmtPrice(p.oldPrice)}</span>
+          <span class="price-sale">${fmtPrice(p.price)}</span>
+        </div>
       </div>
-    </div>
-  </div>`;
+    </div>`;
+  } catch(e) {
+    console.error("Error rendering product card:", e);
+    return "";
+  }
 }
 
 /* Sale card with stock bar */
 function renderSaleCard(p, basePath=""){
-  const disc=discPct(p.price,p.oldPrice);
-  const pct=Math.min(Math.round(p.sold/(p.sold+p.stock)*100),100);
-  return `
-  <div class="sale-card reveal">
-    <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
-    <div class="sale-card-img">
-      <img class="img-front" src="${p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
-      <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
-      ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
-    </div>
-    <div class="stock-bar-wrap">
-      <div class="stock-row"><span>Sold: ${p.sold}</span><span>Available: ${p.stock}</span></div>
-      <div class="stock-bar"><div class="stock-fill" style="width:${pct}%"></div></div>
-    </div>
-    <div class="sale-card-name">${p.name}</div>
-    <div class="sale-card-prices">
-      <span class="price-orig">${fmtPrice(p.oldPrice)}</span>
-      <span class="price-sale">${fmtPrice(p.price)}</span>
-    </div>
-  </div>`;
+  try {
+    if(!p) return "";
+    const disc=discPct(p.price,p.oldPrice);
+    const pct=Math.min(Math.round(p.sold/(p.sold+p.stock)*100),100);
+    return `
+    <div class="sale-card reveal">
+      <a href="${basePath}product.html?id=${p.id}" class="product-card-link" aria-label="${p.name}"></a>
+      <div class="sale-card-img">
+        <img class="img-front" src="${p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
+        <img class="img-back" src="${p.img2||p.img}" alt="${p.name}" width="300" height="400" loading="lazy"/>
+        ${disc>0?`<span class="discount-badge">-${disc}%</span>`:""}
+      </div>
+      <div class="stock-bar-wrap">
+        <div class="stock-row"><span>Sold: ${p.sold}</span><span>Available: ${p.stock}</span></div>
+        <div class="stock-bar"><div class="stock-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="sale-card-name">${p.name}</div>
+      <div class="sale-card-prices">
+        <span class="price-orig">${fmtPrice(p.oldPrice)}</span>
+        <span class="price-sale">${fmtPrice(p.price)}</span>
+      </div>
+    </div>`;
+  } catch(e) {
+    console.error("Error rendering sale card:", e);
+    return "";
+  }
 }
 
 /* ================================================================

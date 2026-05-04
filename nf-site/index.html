@@ -535,86 +535,100 @@
     if (dotsEl) dotsEl.innerHTML = Array(32).fill('<span></span>').join('');
 
     document.addEventListener("DOMContentLoaded", async () => {
-      await fetchData();
+      try {
+        await fetchData();
 
-      // Trending grid - 8 products
-      // Collections Circles (Dynamic Images)
-      const ccGrid = document.getElementById("dynamic-collections-circles");
-      if (ccGrid && window.PRODUCTS.length > 0) {
-        const newProd = window.PRODUCTS.find(p => p.badge === "new") || window.PRODUCTS[0];
-        const saleProd = window.PRODUCTS.find(p => p.badge === "sale") || window.PRODUCTS[1] || window.PRODUCTS[0];
-        const embProd = window.PRODUCTS.find(p => p.cat === "embroidery") || window.PRODUCTS[2] || window.PRODUCTS[0];
-        const threePcProd = window.PRODUCTS.find(p => p.cat === "3piece") || window.PRODUCTS[3] || window.PRODUCTS[0];
-        const allProd = window.PRODUCTS[4] || window.PRODUCTS[0];
+        // Collections Circles
+        const ccGrid = document.getElementById("dynamic-collections-circles");
+        if (ccGrid && window.PRODUCTS && window.PRODUCTS.length > 0) {
+          const newProd = window.PRODUCTS.find(p => p.badge === "new") || window.PRODUCTS[0];
+          const saleProd = window.PRODUCTS.find(p => p.badge === "sale") || window.PRODUCTS[1] || window.PRODUCTS[0];
+          const embProd = window.PRODUCTS.find(p => p.cat === "embroidery") || window.PRODUCTS[2] || window.PRODUCTS[0];
+          const threePcProd = window.PRODUCTS.find(p => p.cat === "3piece") || window.PRODUCTS[3] || window.PRODUCTS[0];
+          const allProd = window.PRODUCTS[4] || window.PRODUCTS[0];
 
-        ccGrid.innerHTML = `
-            <a href="pages/shop.html?new=1" class="circle-item reveal" style="--delay:0s">
-              <div class="circle-img"><img src="${newProd.img}" alt="New Arrivals" style="object-position: top;"/></div>
-              <h3>New Arrivals</h3>
-            </a>
-            <a href="pages/shop.html?sale=1" class="circle-item reveal" style="--delay:.08s">
-              <div class="circle-img"><img src="${saleProd.img}" alt="Sale" style="object-position: top;"/></div>
-              <h3>Sale</h3>
-            </a>
-            <a href="pages/shop.html?cat=embroidery" class="circle-item reveal" style="--delay:.16s">
-              <div class="circle-img"><img src="${embProd.img}" alt="Embroidery" style="object-position: top;"/></div>
-              <h3>Embroidery</h3>
-            </a>
-            <a href="pages/shop.html?cat=3piece" class="circle-item reveal" style="--delay:.24s">
-              <div class="circle-img"><img src="${threePcProd.img}" alt="3Pc Collection" style="object-position: top;"/></div>
-              <h3>3Pc Collection</h3>
-            </a>
-            <a href="pages/shop.html" class="circle-item reveal" style="--delay:.32s">
-              <div class="circle-img"><img src="${allProd.img}" alt="All Products" style="object-position: top;"/></div>
-              <h3>All Products</h3>
-            </a>
-          `;
-        reobserve(ccGrid.parentElement);
+          ccGrid.innerHTML = `
+              <a href="pages/shop.html?new=1" class="circle-item reveal" style="--delay:0s">
+                <div class="circle-img"><img src="${newProd.img}" alt="New Arrivals" style="object-position: top;"/></div>
+                <h3>New Arrivals</h3>
+              </a>
+              <a href="pages/shop.html?sale=1" class="circle-item reveal" style="--delay:.08s">
+                <div class="circle-img"><img src="${saleProd.img}" alt="Sale" style="object-position: top;"/></div>
+                <h3>Sale</h3>
+              </a>
+              <a href="pages/shop.html?cat=embroidery" class="circle-item reveal" style="--delay:.16s">
+                <div class="circle-img"><img src="${embProd.img}" alt="Embroidery" style="object-position: top;"/></div>
+                <h3>Embroidery</h3>
+              </a>
+              <a href="pages/shop.html?cat=3piece" class="circle-item reveal" style="--delay:.24s">
+                <div class="circle-img"><img src="${threePcProd.img}" alt="3Pc Collection" style="object-position: top;"/></div>
+                <h3>3Pc Collection</h3>
+              </a>
+              <a href="pages/shop.html" class="circle-item reveal" style="--delay:.32s">
+                <div class="circle-img"><img src="${allProd.img}" alt="All Products" style="object-position: top;"/></div>
+                <h3>All Products</h3>
+              </a>
+            `;
+          reobserve(ccGrid.parentElement);
+        }
+
+        // Trending grid
+        const tg = document.getElementById("trending-grid");
+        if (tg && window.PRODUCTS && window.PRODUCTS.length > 0) {
+          let trending = window.PRODUCTS.filter(p => p.is_trending);
+          if (trending.length === 0) trending = window.PRODUCTS.slice(0, 8);
+          tg.innerHTML = trending.slice(0, 8).map(p => renderProductCard(p, "pages/")).join("");
+          reobserve(tg);
+        }
+
+        // Collections tab grid
+        const cg = document.getElementById("collections-grid");
+        window.renderCollGrid = function(cat) {
+          if (!window.PRODUCTS || window.PRODUCTS.length === 0) return;
+          let list = [];
+          if (cat === "all") list = window.PRODUCTS;
+          else if (cat === "sale") list = window.PRODUCTS.filter(p => p.badge === "sale");
+          else list = window.PRODUCTS.filter(p => p.cat === cat);
+
+          if (cg) { 
+            cg.innerHTML = list.slice(0, 8).map(p => renderProductCard(p, "pages/")).join(""); 
+            reobserve(cg); 
+          }
+        };
+        
+        if (cg) {
+          renderCollGrid("all");
+          document.querySelectorAll(".ftab").forEach(tab => {
+            tab.addEventListener("click", () => {
+              document.querySelectorAll(".ftab").forEach(t => t.classList.remove("active"));
+              tab.classList.add("active");
+              renderCollGrid(tab.dataset.cat);
+            });
+          });
+        }
+
+        // Sale grid
+        const sg = document.getElementById("sale-grid");
+        if (sg && window.PRODUCTS && window.PRODUCTS.length > 0) { 
+          const saleItems = window.PRODUCTS.filter(p => p.badge === "sale");
+          sg.innerHTML = saleItems.slice(0, 4).map(p => renderSaleCard(p, "pages/")).join(""); 
+          reobserve(sg); 
+        }
+
+        // Loved Designs Strip
+        const lds = document.getElementById("loved-designs-strip");
+        if (lds && window.PRODUCTS && window.PRODUCTS.length > 0) {
+          let featured = window.PRODUCTS.filter(p => p.is_featured);
+          if (featured.length === 0) featured = window.PRODUCTS.slice(0, 6);
+          lds.innerHTML = featured.slice(0, 6).map(p => `<div class="photo-strip-item" style="cursor:pointer" onclick="location.href='pages/product.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" /></div>`).join("");
+        }
+
+        initNavbar();
+        initPurchaseNotif();
+        setTimeout(initReveal, 100);
+      } catch (e) {
+        console.error("Homepage Init Error:", e);
       }
-
-      // Trending grid - 8 products
-      const tg = document.getElementById("trending-grid");
-      if (tg) {
-        let trending = window.PRODUCTS.filter(p => p.is_trending);
-        if (trending.length === 0) trending = window.PRODUCTS.slice(0, 8); // Fallback
-        tg.innerHTML = trending.slice(0, 8).map(p => renderProductCard(p, "pages/")).join("");
-        reobserve(tg);
-      }
-
-      // Collections tab grid
-      const cg = document.getElementById("collections-grid");
-      function renderCollGrid(cat) {
-        let list = [];
-        if (cat === "all") list = window.PRODUCTS;
-        else if (cat === "sale") list = window.PRODUCTS.filter(p => p.badge === "sale");
-        else list = window.PRODUCTS.filter(p => p.cat === cat);
-
-        if (cg) { cg.innerHTML = list.slice(0, 8).map(p => renderProductCard(p, "pages/")).join(""); reobserve(cg); }
-      }
-      renderCollGrid("all");
-      document.querySelectorAll(".ftab").forEach(tab => {
-        tab.addEventListener("click", () => {
-          document.querySelectorAll(".ftab").forEach(t => t.classList.remove("active"));
-          tab.classList.add("active");
-          renderCollGrid(tab.dataset.cat);
-        });
-      });
-
-      // Sale grid
-      const sg = document.getElementById("sale-grid");
-      if (sg) { sg.innerHTML = window.PRODUCTS.filter(p => p.badge === "sale").slice(0, 4).map(p => renderSaleCard(p, "pages/")).join(""); reobserve(sg); }
-
-      // Loved Designs Strip
-      const lds = document.getElementById("loved-designs-strip");
-      if (lds) {
-        let featured = window.PRODUCTS.filter(p => p.is_featured);
-        if (featured.length === 0) featured = window.PRODUCTS.slice(0, 6); // Fallback to first 6 if none featured
-        lds.innerHTML = featured.slice(0, 6).map(p => `<div class="photo-strip-item" style="cursor:pointer" onclick="location.href='pages/product.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" /></div>`).join("");
-      }
-
-      initNavbar();
-      initPurchaseNotif();
-      setTimeout(initReveal, 100);
     });
 
     function reobserve(container) {
