@@ -27,6 +27,4 @@ const PURCHASE_NOTIFS = [
   {name:"Sara",city:"Islamabad",product:"KASHAF HANDMADE SET",img:"/images/hero1.webp"},
 ];
 
-function fmtPrice(n){return"Rs. "+n.toLocaleString()+".00"}
-function discPct(p,o){return o?Math.round(((o-p)/o)*100):0}
-function getCat(c){return{"3piece":"3Pc Collection","2piece":"2Pc Collection","embroidery":"Embroidery","casual":"Casual Wear","new":"New Arrivals"}[c]||c}
+// End of data

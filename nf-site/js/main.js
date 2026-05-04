@@ -23,32 +23,24 @@ window.getCat = window.getCat || function(c) {
 };
 
 async function fetchData() {
+  // Ensure we have a default starting point
+  if (typeof PRODUCTS_FALLBACK !== 'undefined') {
+    window.PRODUCTS = PRODUCTS_FALLBACK;
+  }
+
   try {
     const resP = await fetch(window.API_BASE + "products/");
-    if (!resP.ok) throw new Error("Products API failed");
-    const dataP = await resP.json();
-    if (dataP && dataP.length > 0) {
-      window.PRODUCTS = dataP;
-      console.log("Products loaded from API");
-    } else {
-      throw new Error("Empty products data");
+    if (resP.ok) {
+      const dataP = await resP.json();
+      if (dataP && dataP.length > 0) {
+        window.PRODUCTS = dataP;
+        console.log("Loaded from API");
+      }
     }
-
-    const resC = await fetch(window.API_BASE + "categories/");
-    if (resC.ok) {
-      const dataC = await resC.json();
-      window.CATEGORIES = dataC;
-    }
-    return true;
   } catch (err) {
     console.warn("API Fetch failed, using fallback:", err);
-    if (typeof PRODUCTS_FALLBACK !== 'undefined' && Array.isArray(PRODUCTS_FALLBACK) && PRODUCTS_FALLBACK.length > 0) {
-      window.PRODUCTS = PRODUCTS_FALLBACK;
-      console.log("Products loaded from Fallback");
-      return true;
-    }
-    return false;
   }
+  return true;
 }
 
 /* ---- Toast ---- */
