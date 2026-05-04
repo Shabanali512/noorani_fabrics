@@ -1500,13 +1500,15 @@ button {
 
 .photo-strip-item {
   overflow: hidden;
-  aspect-ratio: 2/3
+  aspect-ratio: 2/3;
+  border-radius: 6px
 }
 
 .photo-strip-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform .6s ease
 }
 

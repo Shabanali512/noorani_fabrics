@@ -430,8 +430,8 @@
   .circles-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .circle-img { width: 100px; height: 100px; }
   .circle-item h3 { font-size: 13px; }
-  .photo-strip { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .photo-strip-item img { height: 140px; }
+  .photo-strip { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px; }
+  .photo-strip-item img { height: 100%; }
   .get-5off { font-size: 12px; padding: 12px; }
 }
 
