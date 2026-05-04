@@ -59,7 +59,7 @@ function renderCart(){
     return;
   }
   const subtotal=Cart.total();
-  const shipping=subtotal>=7999?0:200;
+  const shipping=subtotal>=7999?0:250;
   const remaining=Math.max(0,7999-subtotal);
   const total=subtotal+shipping;
   container.innerHTML=`<div class="cart-layout">
