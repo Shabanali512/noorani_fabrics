@@ -12,17 +12,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy via PythonAnywhere API
+      - name: Pull latest code on PythonAnywhere
         env:
           USERNAME: ${{ secrets.PA_USERNAME }}
           API_TOKEN: ${{ secrets.PA_API_TOKEN }}
           DOMAIN: ${{ secrets.PA_DOMAIN }}
         run: |
-          # Pull latest code
-          curl -X POST "https://www.pythonanywhere.com/api/v0/user/$USERNAME/consoles/" \
+          curl -s -X POST "https://www.pythonanywhere.com/api/v0/user/$USERNAME/consoles/" \
             -H "Authorization: Token $API_TOKEN" \
-            -d "executable=bash&arguments=-c 'cd ~/$DOMAIN && git pull origin main && source virtualenv/bin/activate && pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput'"
-          
-          # Reload the web app
-          curl -X POST "https://www.pythonanywhere.com/api/v0/user/$USERNAME/webapps/$DOMAIN/reload/" \
+            -H "Content-Type: application/json" \
+            -d "{\"executable\": \"bash\", \"arguments\": \"-c 'cd ~/$DOMAIN && git pull origin main && source virtualenv/bin/activate && python manage.py collectstatic --noinput --clear 2>&1'\", \"working_directory\": \"/home/$USERNAME\"}"
+          sleep 30
+
+      - name: Reload web app
+        env:
+          USERNAME: ${{ secrets.PA_USERNAME }}
+          API_TOKEN: ${{ secrets.PA_API_TOKEN }}
+          DOMAIN: ${{ secrets.PA_DOMAIN }}
+        run: |
+          curl -s -X POST "https://www.pythonanywhere.com/api/v0/user/$USERNAME/webapps/$DOMAIN/reload/" \
             -H "Authorization: Token $API_TOKEN"
+          echo "Web app reloaded successfully"
