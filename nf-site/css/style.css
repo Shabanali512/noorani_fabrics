@@ -96,7 +96,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 500;
-  height: 72px;
+  height: 110px;
   transition: box-shadow var(--tr)
 }
 
@@ -112,7 +112,7 @@ button {
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 72px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -120,9 +120,17 @@ button {
 }
 
 .nav-logo img {
-  height: 54px;
+  height: 120px;
   width: auto;
-  object-fit: contain
+  object-fit: contain;
+  /* Convert cream/beige logo to brand maroon color */
+  filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1200%) hue-rotate(315deg) brightness(80%);
+  transition: filter var(--tr), transform var(--tr);
+}
+
+.nav-logo img:hover {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1500%) hue-rotate(315deg) brightness(70%);
+  transform: scale(1.04);
 }
 
 .nav-links {
@@ -3202,9 +3210,8 @@ button {
     }
 
     .nav-logo img {
-      height: 52px !important;
-      /* Larger, more prominent logo */
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      height: 80px !important;
+      filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1200%) hue-rotate(315deg) brightness(80%) !important;
     }
   }
 
@@ -3514,16 +3521,17 @@ button {
   }
 
   .navbar {
-    height: 60px
+    height: 80px
   }
 
   .nav-wrap {
-    height: 60px;
+    height: 80px;
     padding: 0 10px
   }
 
   .nav-logo img {
-    height: 34px
+    height: 80px;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1200%) hue-rotate(315deg) brightness(80%) !important;
   }
 
   .nav-icons {
