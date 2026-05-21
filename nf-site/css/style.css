@@ -123,13 +123,10 @@ button {
   height: 120px;
   width: auto;
   object-fit: contain;
-  /* Convert cream/beige logo to brand maroon color */
-  filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1200%) hue-rotate(315deg) brightness(80%);
-  transition: filter var(--tr), transform var(--tr);
+  transition: transform var(--tr);
 }
 
 .nav-logo img:hover {
-  filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1500%) hue-rotate(315deg) brightness(70%);
   transform: scale(1.04);
 }
 
@@ -3211,7 +3208,6 @@ button {
 
     .nav-logo img {
       height: 80px !important;
-      filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1200%) hue-rotate(315deg) brightness(80%) !important;
     }
   }
 
@@ -3531,7 +3527,6 @@ button {
 
   .nav-logo img {
     height: 80px;
-    filter: brightness(0) saturate(100%) invert(13%) sepia(55%) saturate(1200%) hue-rotate(315deg) brightness(80%) !important;
   }
 
   .nav-icons {
