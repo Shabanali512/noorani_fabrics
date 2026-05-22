@@ -119,8 +119,14 @@ button {
   gap: 20px
 }
 
+.nav-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .nav-logo img {
-  height: 120px;
+  height: 95px;
   width: auto;
   object-fit: contain;
   transition: transform var(--tr);
@@ -3207,7 +3213,7 @@ button {
     }
 
     .nav-logo img {
-      height: 80px !important;
+      height: 65px !important;
     }
   }
 
@@ -3526,7 +3532,7 @@ button {
   }
 
   .nav-logo img {
-    height: 80px;
+    height: 65px;
   }
 
   .nav-icons {
