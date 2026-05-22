@@ -107,7 +107,7 @@ button {
 }
 
 .nav-logo img {
-  height: 75px;
+  height: 68px;
   width: auto;
   object-fit: contain;
   transition: transform var(--tr);
@@ -3044,7 +3044,7 @@ button {
   }
 
   .nav-logo img {
-    height: 55px;
+    height: 48px;
   }
 
   .nav-icons {
